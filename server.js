@@ -4,7 +4,7 @@ const port = 3002;
 const db = require("./database/database");
 const productsFunctions = require("../ProjetoPTdev/functions/productsFunctions");
 const userFunctions = require("../ProjetoPTdev/functions/usersFunctions")
-const router = require("../ProjetoPTdev/routers-controllers/routers")
+const router = require("../ProjetoPTdev/routers/routers")
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
