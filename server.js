@@ -8,7 +8,10 @@ const router = require("../ProjetoPTdev/routers/routers")
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
+//middlewares:
 app.set('view engine', 'ejs');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 async function runApp() {
     await db.connect();

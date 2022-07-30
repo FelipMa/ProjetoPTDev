@@ -16,11 +16,12 @@ class Controller {
     }
 
     async postCreateProduct (req, res) {
-        const reqBody = req.body;
 
-        console.log(reqBody)
+        const {name, price, stock} = req.body;
+
+        console.log(req.body)
         
-        await productsFunctions.createProduct(2, 2, 2)
+        await productsFunctions.createProduct(name, price, stock)
     
         res.redirect("/");
     }

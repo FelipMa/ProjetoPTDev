@@ -1,11 +1,4 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": 2,
-            "price": 2,
-            "stock": 2
-        }
-    ],
+    "products": [],
     "users": []
 }

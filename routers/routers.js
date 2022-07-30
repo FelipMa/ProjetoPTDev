@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router()
-const productsFunctions = require("../functions/productsFunctions");
-const userFunctions = require("../functions/usersFunctions")
 const controller = require("../controllers/controllers");
 
 router.get("/", function(req, res){
