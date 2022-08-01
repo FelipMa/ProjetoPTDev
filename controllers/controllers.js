@@ -11,9 +11,22 @@ class Controller {
         res.render("about");
     }
 
-    async getCreateProduct (req, res) {
-        res.render("create-product")
+    async getManageProducts (req, res) {
+        res.render("manage-products")
     }
+
+    async getListProducts (req, res) {
+        res.render("list-products")
+    }
+
+    async getCreateUser (req, res) {
+        res.render("create-user")
+    }
+
+    async getAccount (req, res) {
+        res.render("account")
+    }
+
 
     async postCreateProduct (req, res) {
 
