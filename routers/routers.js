@@ -46,4 +46,12 @@ router.post("/list-products/buy-product/:productId", function(req, res){
     controller.buyProduct(req, res)
 })
 
+router.post("/create-user/register", function(req, res){
+    controller.registerUser(req, res)
+})
+
+router.post("/create-user/login", function(req, res){
+    controller.loginUser(req, res)
+})
+
 module.exports = router

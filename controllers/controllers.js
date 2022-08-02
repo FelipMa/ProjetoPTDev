@@ -83,6 +83,22 @@ class Controller {
         
         res.redirect(req.get('referer'));
     }
+
+    async registerUser (req, res) {
+        const {email, password, adm} = req.body
+
+        await userFunctions.createUser(email, password, adm)
+
+        res.redirect(req.get('referer'));
+    }
+
+    async loginUser (req, res) {
+        const {email, password} = req.body
+
+        await userFunctions.userLogin(email, password)
+
+        res.redirect(req.get('referer'));
+    }
 }
 
 const controller = new Controller

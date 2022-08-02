@@ -4,7 +4,7 @@
             "id": 1,
             "name": "1",
             "price": "1",
-            "stock": 4
+            "stock": "1"
         },
         {
             "id": 2,
@@ -19,5 +19,12 @@
             "stock": 1
         }
     ],
-    "users": []
+    "users": [
+        {
+            "id": 1,
+            "email": "email1",
+            "password": "123",
+            "adm": ""
+        }
+    ]
 }

@@ -7,6 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    create user
+    <h1>Register new user</h1>
+
+    <form method="POST" action="/create-user/register">
+        <input type="text" name="email" placeholder="Enter email">
+        <input type="text" name="password" placeholder="Enter password">
+        <input type="text" name="adm" placeholder="Enter adm">
+        <button type="submit">Register</button>
+    </form>
+
+    <h1>Already have an account? Login</h1>
+
+    <form method="POST" action="/create-user/login">
+        <input type="text" name="email" placeholder="Enter email">
+        <input type="text" name="password" placeholder="Enter password">
+        <button type="submit">Login</button>
+    </form>
+    
 </body>
 </html>
