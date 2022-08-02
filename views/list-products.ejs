@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Product Page</h1>
 
+    <h1>Lista de produtos</h1>
     <table>
         <thead>
             <tr>
@@ -18,13 +18,21 @@
             </tr>
         </thead>
         <tbody>
+            <% products.forEach(function(product) { %>
             <tr>
-                <td>Nome aqui</td>
-                <td>Preço aqui</td>
-                <td>Estoque aqui</td>
+                <td><%= product.name %></td>
+                <td><%= product.price %></td>
+                <td><%= product.stock %></td>
+                <td>
+                    <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
+                        <input type="text" name="quantity" placeholder="Enter Quantity">
+                        <button type="submit">Buy</button>
+                    </form>
+                </td>
             </tr>
+            <% }); %>
         </tbody>
     </table>
-    
+
 </body>
 </html>

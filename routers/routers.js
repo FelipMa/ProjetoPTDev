@@ -27,7 +27,23 @@ router.get("/account", function(req, res){
 })
 
 router.post("/manage-products/create-product", async function (req, res) {
-    controller.postCreateProduct(req, res)
+    controller.createProduct(req, res)
+})
+
+router.get("/manage-products/edit-product/:productId", function(req, res){
+    controller.getSingleProduct(req, res)
+})
+
+router.get("/manage-products/edit-product/:productId/delete", function(req, res){
+    controller.deleteProduct(req, res)
+})
+
+router.post("/manage-products/edit-product/:productId/update", function(req, res){
+    controller.updateProduct(req, res)
+})
+
+router.post("/list-products/buy-product/:productId", function(req, res){
+    controller.buyProduct(req, res)
 })
 
 module.exports = router

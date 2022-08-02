@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1><%= `Editar produto ${product.name}` %></h1>
+    <h3>Estado atual:</h3>
+    <h4>Nome: <%= product.name %></h4>
+    <h4>Preço: <%= product.price %></h4>
+    <h4>Estoque: <%= product.stock %></h4>
+
+    <form method="POST" action=<%= `/manage-products/edit-product/${product.id}/update` %>>
+        <input type="text" name="name" placeholder="Enter New Name">
+        <input type="text" name="price" placeholder="Enter New Price">
+        <input type="text" name="stock" placeholder="Enter New Stock">
+        <button type="submit">Update</button>
+    </form>
+
+    <button>
+        <a href=<%= `/manage-products/edit-product/${product.id}/delete` %>>Delete product</a>
+    </button>
+
+</body>
+</html>

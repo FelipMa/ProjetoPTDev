@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Create Product</h1>
-    <form method="POST" action="/products/create-product">
+    <form method="POST" action="/manage-products/create-product">
         <input type="text" name="name" placeholder="Enter Name">
         <input type="text" name="price" placeholder="Enter Price">
         <input type="text" name="stock" placeholder="Enter Stock">
@@ -16,5 +16,30 @@
     </form>
 
     <h1>List of Products</h1>
+    <% if (products.length) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(product) {  %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.stock %></td>
+                        <td>
+                            <a href=<%= `/manage-products/edit-product/${product.id}` %>>Edit</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else {%>
+        <h3>No products found</h3>
+    <% } %>
 </body>
 </html>
