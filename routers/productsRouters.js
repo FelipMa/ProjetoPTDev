@@ -15,7 +15,7 @@ router.post("/manage-products/create-product", async function (req, res) {
 })
 
 router.get("/manage-products/edit-product/:productId", function(req, res){
-    controller.getSingleProduct(req, res)
+    controller.getSingleProductEdit(req, res)
 })
 
 router.get("/manage-products/edit-product/:productId/delete", function(req, res){
@@ -28,6 +28,10 @@ router.post("/manage-products/edit-product/:productId/update", function(req, res
 
 router.post("/list-products/buy-product/:productId", function(req, res){
     controller.buyProduct(req, res)
+})
+
+router.get("/list-products/see-product/:productId", function(req, res){
+    controller.seeProduct(req, res)
 })
 
 module.exports = router

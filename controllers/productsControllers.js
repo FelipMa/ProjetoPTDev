@@ -23,7 +23,7 @@ class ProductController {
         res.redirect("/manage-products");
     }
 
-    async getSingleProduct (req, res) {
+    async getSingleProductEdit (req, res) {
         const productId = await req.params.productId
 
         const productIdInt = parseInt(productId)
@@ -65,6 +65,16 @@ class ProductController {
         await productsFunctions.buyProduct(productIdInt, quantity)
         
         res.redirect(req.get('referer'));
+    }
+
+    async seeProduct (req, res) {
+        const productId = await req.params.productId
+
+        const productIdInt = parseInt(productId)
+
+        const product = await productsFunctions.findProductById(productIdInt)
+
+        res.render("see-product", {product})
     }
 }
 

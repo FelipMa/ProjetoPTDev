@@ -4,7 +4,7 @@
             "id": 1,
             "name": "1",
             "price": "1",
-            "stock": 5
+            "stock": "5"
         },
         {
             "id": 2,
