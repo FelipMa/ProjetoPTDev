@@ -7,6 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    account
+    <% if (req.session.user) { %>
+
+        <h1><%= `Olá ${req.session.user.email}` %></h1>
+        <a href="/account/logout">Logout</a>
+
+        <h3>Seus dados:</h3>
+        <p><%= `Email: ${req.session.user.email}` %></p>
+        <p><%= `Senha: ${req.session.user.password}` %></p>
+        
+        <form method="POST" action="/account/edit-user">
+            <input type="email" name="email" placeholder="Enter new email">
+            <input type="password" name="password" placeholder="Enter new password">
+            <label for="adm">adm</label>
+            <input type="checkbox" name="adm">
+            <button type="submit">Update (Necessário fazer login novamente)</button>
+        </form>
+
+        <a href="/account/delete">Deletar conta</a>
+
+    <% } else { %>
+
+        <h1>Necessário iniciar sessão</h1>
+
+    <% } %>
 </body>
 </html>

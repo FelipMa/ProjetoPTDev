@@ -1,15 +1,6 @@
 const productsFunctions = require("../functions/productsFunctions");
-const userFunctions = require("../functions/usersFunctions");
 
-class Controller {
-
-    async getIndex (req, res) {
-        res.render("index")
-    }
-
-    async getAbout (req, res) {
-        res.render("about");
-    }
+class ProductController {
 
     async getManageProducts (req, res) {
         const products = await productsFunctions.findAllProducts()
@@ -21,14 +12,6 @@ class Controller {
         const products = await productsFunctions.findAllProducts()
 
         res.render("list-products", {products})
-    }
-
-    async getCreateUser (req, res) {
-        res.render("create-user")
-    }
-
-    async getAccount (req, res) {
-        res.render("account")
     }
 
     async createProduct (req, res) {
@@ -83,24 +66,8 @@ class Controller {
         
         res.redirect(req.get('referer'));
     }
-
-    async registerUser (req, res) {
-        const {email, password, adm} = req.body
-
-        await userFunctions.createUser(email, password, adm)
-
-        res.redirect(req.get('referer'));
-    }
-
-    async loginUser (req, res) {
-        const {email, password} = req.body
-
-        await userFunctions.userLogin(email, password)
-
-        res.redirect(req.get('referer'));
-    }
 }
 
-const controller = new Controller
+const productController = new ProductController
 
-module.exports = controller
+module.exports = productController

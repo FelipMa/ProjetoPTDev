@@ -10,9 +10,10 @@
     <h1>Register new user</h1>
 
     <form method="POST" action="/create-user/register">
-        <input type="text" name="email" placeholder="Enter email">
-        <input type="text" name="password" placeholder="Enter password">
-        <input type="text" name="adm" placeholder="Enter adm">
+        <input type="email" name="email" placeholder="Enter email">
+        <input type="password" name="password" placeholder="Enter password">
+        <label for="adm">adm</label>
+        <input type="checkbox" name="adm" placeholder="Enter adm">
         <button type="submit">Register</button>
     </form>
 
@@ -21,7 +22,7 @@
     <form method="POST" action="/create-user/login">
         <input type="text" name="email" placeholder="Enter email">
         <input type="text" name="password" placeholder="Enter password">
-        <button type="submit">Login</button>
+        <button type="submit">Iniciar Sessão</button>
     </form>
     
 </body>

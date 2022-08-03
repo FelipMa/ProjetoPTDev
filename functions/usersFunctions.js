@@ -101,7 +101,7 @@ class UsersFunctions {
         }
     }
 
-    async userLogin(email, password){
+    async userLogin(email, password, req){
 
         const exist = await this.findUserByEmail(email)
 
@@ -110,12 +110,19 @@ class UsersFunctions {
         }
         else {
             if (exist.password === password) {
+                
+                req.session.user = exist
+
                 console.log(`User ${email} successfully logged in`)
             }
             else{
                 console.log("Password is incorrect")
             }
         }
+    }
+
+    async userLogout(req){
+        req.session.destroy()
     }
 }
 
