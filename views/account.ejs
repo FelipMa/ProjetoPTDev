@@ -9,12 +9,15 @@
 <body>
     <% if (req.session.user) { %>
 
-        <h1><%= `Olá ${req.session.user.email}` %></h1>
+        <h1><%= `Olá ${userEmail}` %></h1>
         <a href="/account/logout">Logout</a>
 
         <h3>Seus dados:</h3>
-        <p><%= `Email: ${req.session.user.email}` %></p>
-        <p><%= `Senha: ${req.session.user.password}` %></p>
+        <p><%= `Email: ${userEmail}` %></p>
+        <p><%= `ID: ${userId}` %></p>
+        <p><%= `Adm: ${userAdm}` %></p>
+        
+        
         
         <form method="POST" action="/account/edit-user">
             <input type="email" name="email" placeholder="Enter new email">
@@ -29,6 +32,8 @@
     <% } else { %>
 
         <h1>Necessário iniciar sessão</h1>
+
+        <a href="/create-user">Inicie sessão aqui</a>
 
     <% } %>
 </body>

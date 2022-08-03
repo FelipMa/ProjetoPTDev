@@ -18,11 +18,11 @@ class UsersFunctions {
 
     async createUser(email, password, adm = false) {
 
-        if (email === undefined) {
+        if (email === undefined || password === "") {
             throw new Error ("email is necessary")
         }
 
-        if (password === undefined) {
+        if (password === undefined || password === "") {
             throw new Error ("password is necessary")
         }
 
@@ -103,15 +103,15 @@ class UsersFunctions {
 
     async userLogin(email, password, req){
 
-        const exist = await this.findUserByEmail(email)
+        const existUser = await this.findUserByEmail(email)
 
-        if (!exist) {
+        if (!existUser) {
             console.log("This email is not registered")
         }
         else {
-            if (exist.password === password) {
+            if (existUser.password === password) {
                 
-                req.session.user = exist
+                req.session.user = existUser.id
 
                 console.log(`User ${email} successfully logged in`)
             }

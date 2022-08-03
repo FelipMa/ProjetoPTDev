@@ -22,7 +22,7 @@ class ProductsFunctions {
 
     async createProduct(name, price = 0, stock = 0) {
 
-        if (name === undefined) {
+        if (name === undefined || name === "") {
             throw new Error ("name is necessary")
         }
 
@@ -63,7 +63,7 @@ class ProductsFunctions {
 
     async updateProduct(productId, name, price = 0, stock = 0) {
 
-        if (name === undefined) {
+        if (name === undefined || name === "") {
             throw new Error ("name is necessary")
         }
 
