@@ -76,8 +76,35 @@ class ProductController {
 
         res.render("see-product", {product})
     }
-}
 
+    async addToCart (req, res) {
+        const productId = await req.params.productId
+
+        const productIdInt = parseInt(productId)
+
+        await productsFunctions.addToCart(productIdInt, req)
+
+        res.redirect(req.get('referer'));
+    }
+
+    async getCart (req, res) {
+        if (req.session.cart) {
+            await productsFunctions.refreshCart(req)
+        }
+
+        res.render("cart", {req})
+    }
+
+    async removeFromCart (req, res) {
+        const productId = await req.params.productId
+
+        const productIdInt = parseInt(productId)
+
+        await productsFunctions.removeFromCart(productIdInt, req)
+
+        res.redirect(req.get('referer'));
+    }
+}
 const productController = new ProductController
 
 module.exports = productController

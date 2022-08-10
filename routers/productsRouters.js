@@ -33,5 +33,14 @@ router.post("/list-products/buy-product/:productId", function(req, res){
 router.get("/list-products/see-product/:productId", function(req, res){
     controller.seeProduct(req, res)
 })
+router.get("/list-products/add-to-cart/:productId", function(req, res){
+    controller.addToCart(req, res)
+})
+router.get("/cart", function(req, res){
+    controller.getCart(req, res)
+})
+router.get("/list-products/remove-from-cart/:productId", function(req, res){
+    controller.removeFromCart(req, res)
+})
 
 module.exports = router

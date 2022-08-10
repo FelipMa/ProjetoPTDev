@@ -122,6 +122,34 @@ class ProductsFunctions {
             }
         }
     }
+
+    async addToCart(productId, req) {
+        if (!req.session.cart) {
+            req.session.cart = []
+        } 
+        const product = await this.findProductById(productId)
+
+        req.session.cart.push(product)
+        console.log(`Succesfully add product ${product.name} to cart`)
+    }
+
+    async refreshCart(req) {
+        for (let i = 0; i < req.session.cart.length; i++) {
+            let id = req.session.cart[i].id
+
+            const product = await this.findProductById(id)
+
+            req.session.cart[i] = product
+        }
+    }
+
+    async removeFromCart(productId, req) {
+        const productIndex = req.session.cart.findIndex(product => product.id === productId);
+        const delName = req.session.cart[productIndex].name
+
+        req.session.cart.splice(productIndex, 1);
+        console.log(`Successfully removed ${delName} from cart`)
+    }
 }
 const productsFunctions = new ProductsFunctions
 

@@ -1,4 +1,36 @@
 {
-    "products": [],
-    "users": []
+    "products": [
+        {
+            "id": 1,
+            "name": "1",
+            "price": "1",
+            "stock": "5"
+        },
+        {
+            "id": 2,
+            "name": "2",
+            "price": "2",
+            "stock": "0"
+        },
+        {
+            "id": 3,
+            "name": "3",
+            "price": "3",
+            "stock": "1"
+        },
+        {
+            "id": 4,
+            "name": "4",
+            "price": "4",
+            "stock": 3
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "email": "teste@123",
+            "password": "123",
+            "adm": "on"
+        }
+    ]
 }
