@@ -104,6 +104,12 @@ class ProductController {
 
         res.redirect(req.get('referer'));
     }
+
+    async buyAllCart (req, res) {
+        await productsFunctions.buyAllCart(req)
+
+        res.redirect(req.get('referer'));
+    }
 }
 const productController = new ProductController
 

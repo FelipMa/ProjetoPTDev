@@ -150,6 +150,15 @@ class ProductsFunctions {
         req.session.cart.splice(productIndex, 1);
         console.log(`Successfully removed ${delName} from cart`)
     }
+
+    async buyAllCart(req) {
+        for (let i = 0; i < req.session.cart.length; i++) {
+            let id = req.session.cart[i].id
+
+            await this.buyProduct(id, 1)
+        }
+        console.log("Seccessfully bought all cart (only the products in stock)")
+    }
 }
 const productsFunctions = new ProductsFunctions
 

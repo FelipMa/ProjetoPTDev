@@ -42,5 +42,8 @@ router.get("/cart", function(req, res){
 router.get("/list-products/remove-from-cart/:productId", function(req, res){
     controller.removeFromCart(req, res)
 })
+router.get("/cart/buy-all-cart", function(req, res){
+    controller.buyAllCart(req, res)
+})
 
 module.exports = router

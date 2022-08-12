@@ -15,9 +15,9 @@
     <h4>Estoque: <%= product.stock %></h4>
 
     <form method="POST" action=<%= `/manage-products/edit-product/${product.id}/update` %>>
-        <input type="text" name="name" placeholder="Enter New Name">
-        <input type="text" name="price" placeholder="Enter New Price">
-        <input type="text" name="stock" placeholder="Enter New Stock">
+        <input type="text" name="name" placeholder="Enter New Name" value=<%= `${product.name}` %>>
+        <input type="text" name="price" placeholder="Enter New Price" value=<%= `${product.price}` %>>
+        <input type="text" name="stock" placeholder="Enter New Stock" value=<%= `${product.stock}` %>>
         <button type="submit">Update</button>
     </form>
 
