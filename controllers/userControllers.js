@@ -1,4 +1,5 @@
 const userFunctions = require("../functions/usersFunctions");
+const productsFunctions = require("../functions/productsFunctions");
 
 class UserController {
 
@@ -8,15 +9,18 @@ class UserController {
 
     async getAccount (req, res) {
 
-        const user = await userFunctions.findUserById(req.session.user)
+        if (req.session.user) {
+            const user = await userFunctions.findUserById(req.session.user.id)
 
-        if (user){
-            var userEmail = user.email
-            var userId = user.id
-            var userAdm = user.adm
-
+            let userEmail = user.email
+            let userId = user.id
+            let userAdm = user.adm
+            
+            await productsFunctions.refreshWishList(req)
+            
             res.render("account", {req, userEmail, userId, userAdm})
         }
+        
         else {
             res.render("account", {req})
         }
@@ -53,7 +57,7 @@ class UserController {
     async editUser (req, res) {
         const {email, password, adm} = req.body
 
-        const user = await userFunctions.findUserById(req.session.user)
+        const user = await userFunctions.findUserById(req.session.user.id)
 
         await userFunctions.updateUser(user.id, email, password, adm)
 
@@ -63,7 +67,7 @@ class UserController {
     }
 
     async deleteUser (req, res) {
-        const userId = req.session.user
+        const userId = req.session.user.id
 
         await userFunctions.deleteUser(userId)
 

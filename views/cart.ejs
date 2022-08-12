@@ -10,36 +10,46 @@
     <% if (req.session.cart) { %>
 
         <h1>Carrinho</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% req.session.cart.forEach(function(product) { %>
-                <tr>
-                    <td><%= product.name %></td>
-                    <td><%= product.price %></td>
-                    <td><%= product.stock %></td>
-                    <td>
-                        <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
-                            <input type="text" name="quantity" placeholder="Enter Quantity">
-                            <button type="submit">Buy</button>
-                        </form>
-                    </td>
-                    <td>
-                        <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
-                        <a href=<%= `/list-products/remove-from-cart/${product.id}` %>>Remover do carrinho</a>
-                    </td>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
-    
-        <a href="/cart/buy-all-cart">Comprar todo o carrinho (1 unidade de cada)</a>
+
+        <% if (req.session.cart.length === 0) { %>
+
+            <p>Não há produtos aqui por enquanto</p>
+
+        <% } else { %>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% req.session.cart.forEach(function(product) { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.stock %></td>
+                        <td>
+                            <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
+                                <input type="text" name="quantity" placeholder="Enter Quantity">
+                                <button type="submit">Buy</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
+                            <a href=<%= `/list-products/remove-from-cart/${product.id}` %>>Remover do carrinho</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        
+            <a href="/cart/buy-all-cart">Comprar todo o carrinho (1 unidade de cada)</a>
+
+        <% } %>
+
     <% } else { %>
 
         <h1>Carrinho vazio</h1>

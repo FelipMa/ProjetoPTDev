@@ -4,25 +4,19 @@
             "id": 1,
             "name": "1",
             "price": "1",
-            "stock": 4
+            "stock": "5"
         },
         {
             "id": 2,
             "name": "2",
             "price": "2",
-            "stock": 3
+            "stock": "4"
         },
         {
             "id": 3,
             "name": "3",
             "price": "3",
-            "stock": 0
-        },
-        {
-            "id": 4,
-            "name": "4",
-            "price": "4",
-            "stock": 0
+            "stock": "3"
         }
     ],
     "users": [

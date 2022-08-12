@@ -111,7 +111,10 @@ class UsersFunctions {
         else {
             if (existUser.password === password) {
                 
-                req.session.user = existUser.id
+                req.session.user = {
+                    id: existUser.id,
+                    wishList: []
+                }
 
                 console.log(`User ${email} successfully logged in`)
             }
