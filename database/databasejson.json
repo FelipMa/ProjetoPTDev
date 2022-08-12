@@ -10,13 +10,13 @@
             "id": 2,
             "name": "2",
             "price": "2",
-            "stock": "4"
+            "stock": "7"
         },
         {
-            "id": 3,
-            "name": "3",
-            "price": "3",
-            "stock": "3"
+            "id": 4,
+            "name": "4",
+            "price": "4",
+            "stock": "7"
         }
     ],
     "users": [

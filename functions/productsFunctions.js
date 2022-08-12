@@ -148,18 +148,24 @@ class ProductsFunctions {
     }
 
     async refreshCart(req) {
+        let removedIndex = []
+
         for (let i = 0; i < req.session.cart.length; i++) {
             let id = req.session.cart[i].id
 
             const product = await this.findProductById(id)
 
             if (product === undefined) {
-                req.session.cart.splice(i, 1);
+                removedIndex.push(i)
             }
             else {
                 req.session.cart[i] = product
             }
         }
+
+        removedIndex.forEach(function(index) {
+            req.session.cart.splice(index, 1);
+        })
     }
 
     async removeFromCart(productId, req) {
@@ -220,18 +226,25 @@ class ProductsFunctions {
     }
 
     async refreshWishList(req) {
+
+        let removedIndex = []
+
         for (let i = 0; i < req.session.user.wishList.length; i++) {
             let id = req.session.user.wishList[i].id
 
             let product = await this.findProductById(id)
 
             if (product === undefined) {
-                req.session.user.wishList.splice(i, 1);
+                removedIndex.push(i)
             }
             else {
                 req.session.user.wishList[i] = product
             }
         }
+
+        removedIndex.forEach(function(index) {
+            req.session.user.wishList.splice(index, 1);
+        })
     }
 
     async removeFromWishList(productId, req) {
