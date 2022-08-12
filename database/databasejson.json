@@ -4,13 +4,13 @@
             "id": 1,
             "name": "1",
             "price": "1",
-            "stock": 0
+            "stock": 4
         },
         {
             "id": 2,
             "name": "2",
             "price": "2",
-            "stock": 0
+            "stock": 3
         },
         {
             "id": 3,

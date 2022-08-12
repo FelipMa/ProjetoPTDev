@@ -152,12 +152,25 @@ class ProductsFunctions {
     }
 
     async buyAllCart(req) {
-        for (let i = 0; i < req.session.cart.length; i++) {
-            let id = req.session.cart[i].id
 
-            await this.buyProduct(id, 1)
+        let available = true
+        for (let j = 0; j < req.session.cart.length; j++) {
+            if (req.session.cart[j].stock === 0) {
+                available = false
+            }
         }
-        console.log("Seccessfully bought all cart (only the products in stock)")
+
+        if (available === true) {
+            for (let i = 0; i < req.session.cart.length; i++) {
+                let id = req.session.cart[i].id
+    
+                await this.buyProduct(id, 1)
+            }
+            console.log("Seccessfully bought all cart")
+        }
+        else {
+            console.log("Not enought stock of one or more products")
+        }
     }
 }
 const productsFunctions = new ProductsFunctions
