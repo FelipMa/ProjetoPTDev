@@ -16,8 +16,6 @@ class UserController {
             let userId = user.id
             let userAdm = user.adm
             
-            await productsFunctions.refreshWishList(req)
-            
             res.render("account", {req, userEmail, userId, userAdm})
         }
         

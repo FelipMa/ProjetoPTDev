@@ -110,26 +110,6 @@ class ProductController {
 
         res.redirect(req.get('referer'));
     }
-
-    async addToWishLsit (req, res) {
-        const productId = await req.params.productId
-
-        const productIdInt = parseInt(productId)
-
-        await productsFunctions.addToWishList(req, productIdInt)
-
-        res.redirect(req.get('referer'));
-    }
-
-    async removeFromWishList (req, res) {
-        const productId = await req.params.productId
-
-        const productIdInt = parseInt(productId)
-
-        await productsFunctions.removeFromWishList(productIdInt, req)
-
-        res.redirect(req.get('referer'));
-    }
 }
 const productController = new ProductController
 

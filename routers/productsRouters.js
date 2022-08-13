@@ -45,11 +45,5 @@ router.get("/list-products/remove-from-cart/:productId", function(req, res){
 router.get("/cart/buy-all-cart", function(req, res){
     controller.buyAllCart(req, res)
 })
-router.get("/list-products/add-to-wish-list/:productId", function(req, res){
-    controller.addToWishLsit(req, res)
-})
-router.get("/list-products/remove-from-wish-list/:productId", function(req, res){
-    controller.removeFromWishList(req, res)
-})
 
 module.exports = router

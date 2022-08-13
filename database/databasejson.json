@@ -10,12 +10,18 @@
             "id": 2,
             "name": "2",
             "price": "2",
+            "stock": "4"
+        },
+        {
+            "id": 3,
+            "name": "3",
+            "price": "3",
             "stock": "7"
         },
         {
-            "id": 4,
-            "name": "4",
-            "price": "4",
+            "id": 5,
+            "name": "5",
+            "price": "5",
             "stock": "7"
         }
     ],
@@ -24,7 +30,8 @@
             "id": 1,
             "email": "teste@123",
             "password": "123",
-            "adm": "on"
+            "adm": "on",
+            "wishList": []
         }
     ]
 }

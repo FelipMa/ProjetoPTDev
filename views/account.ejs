@@ -28,44 +28,6 @@
         </form>
 
         <a href="/account/delete">Deletar conta</a>
-
-        <h3>Sua lista de desejos:</h3>
-
-        <% if (req.session.user.wishList.length === 0) { %>
-
-            <p>Não há produtos aqui por enquanto</p>
-
-        <% } else { %>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% req.session.user.wishList.forEach(function(product) { %>
-                    <tr>
-                        <td><%= product.name %></td>
-                        <td><%= product.price %></td>
-                        <td><%= product.stock %></td>
-                        <td>
-                            <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
-                        </td>
-                        <td>
-                            <a href=<%= `/list-products/add-to-cart/${product.id}` %>>Adicionar ao carrinho</a>
-                        </td>
-                        <td>
-                            <a href=<%= `/list-products/remove-from-wish-list/${product.id}` %>>Remover da lista de desejos</a>
-                        </td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-
-        <% } %>
         
     <% } else { %>
 

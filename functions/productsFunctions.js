@@ -197,63 +197,6 @@ class ProductsFunctions {
             console.log("Not enought stock of one or more products")
         }
     }
-
-    async addToWishList(req, productId) {
-        if (req.session.user) {
-            const product = await this.findProductById(productId)
-
-            let exist = false
-
-            for (let i = 0; i < req.session.user.wishList.length; i++) {
-                let id = req.session.user.wishList[i].id
-
-                if (id === product.id) {
-                    exist = true
-                }
-            }
-
-            if (exist === false) {
-                req.session.user.wishList.push(product)
-                console.log(`Succesfully add product ${product.name} to wish list`)
-            }
-            else {
-                console.log("This product is already in your wish list")
-            }
-        }
-        else {
-            console.log(`Need do be logged to add to wish list`)
-        }
-    }
-
-    async refreshWishList(req) {
-
-        let removedIndex = []
-
-        for (let i = 0; i < req.session.user.wishList.length; i++) {
-            let id = req.session.user.wishList[i].id
-
-            let product = await this.findProductById(id)
-
-            if (product === undefined) {
-                removedIndex.push(i)
-            }
-            else {
-                req.session.user.wishList[i] = product
-            }
-        }
-
-        removedIndex.forEach(function(index) {
-            req.session.user.wishList.splice(index, 1);
-        })
-    }
-
-    async removeFromWishList(productId, req) {
-        const productIndex = req.session.user.wishList.findIndex(product => product.id === productId);
-        const delName = req.session.user.wishList[productIndex].name
-
-        req.session.user.wishList.splice(productIndex, 1);
-        console.log(`Successfully removed ${delName} from wish list`)
-    }
 }
 const productsFunctions = new ProductsFunctions
 

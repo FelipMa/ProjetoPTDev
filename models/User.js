@@ -13,6 +13,7 @@ class User {
         this.email = email
         this.password = password
         this.adm = adm
+        this.wishList = []
     }
 }
 

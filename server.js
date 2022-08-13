@@ -5,6 +5,7 @@ const db = require("./database/database");
 const homeRoutes = require("./routers/homeRouters")
 const productRoutes = require("./routers/productsRouters")
 const userRoutes = require("./routers/userRouters")
+const wishListRoutes = require("./routers/wishListRouters")
 const sessions = require('express-session');
 
 app.use(sessions({
@@ -28,6 +29,7 @@ async function runApp() {
     app.use(homeRoutes)
     app.use(productRoutes)
     app.use(userRoutes)
+    app.use(wishListRoutes)
 }
 
 runApp()

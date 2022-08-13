@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if (req.session.user) { %>
+
+        <h3>Sua lista de desejos:</h3>
+
+        <% if (userWishList.length === 0) { %>
+
+            <p>Não há produtos aqui por enquanto</p>
+
+        <% } else { %>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% userWishList.forEach(function(product) { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.stock %></td>
+                        <td>
+                            <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
+                        </td>
+                        <td>
+                            <a href=<%= `/list-products/add-to-cart/${product.id}` %>>Adicionar ao carrinho</a>
+                        </td>
+                        <td>
+                            <a href=<%= `/list-products/remove-from-wish-list/${product.id}` %>>Remover da lista de desejos</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+                
+            </table>
+
+            <% } %>
+
+    <% } else { %>
+
+        <h1>Necessário iniciar sessão</h1>
+        
+        <a href="/create-user">Inicie sessão aqui</a>
+        
+    <% } %>
+</body>
+</html>
