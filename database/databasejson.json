@@ -4,13 +4,13 @@
             "id": 1,
             "name": "1",
             "price": "1",
-            "stock": "5"
+            "stock": 4
         },
         {
             "id": 2,
             "name": "2",
             "price": "2",
-            "stock": "4"
+            "stock": 3
         },
         {
             "id": 3,
@@ -22,7 +22,7 @@
             "id": 5,
             "name": "5",
             "price": "5",
-            "stock": "7"
+            "stock": 6
         }
     ],
     "users": [

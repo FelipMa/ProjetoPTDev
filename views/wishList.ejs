@@ -37,10 +37,10 @@
                             <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
                         </td>
                         <td>
-                            <a href=<%= `/list-products/add-to-cart/${product.id}` %>>Adicionar ao carrinho</a>
+                            <a href=<%= `/cart/add-to-cart/${product.id}` %>>Adicionar ao carrinho</a>
                         </td>
                         <td>
-                            <a href=<%= `/list-products/remove-from-wish-list/${product.id}` %>>Remover da lista de desejos</a>
+                            <a href=<%= `/wish-list/remove-from-wish-list/${product.id}` %>>Remover da lista de desejos</a>
                         </td>
                     </tr>
                     <% }); %>
