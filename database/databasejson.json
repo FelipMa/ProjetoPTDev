@@ -32,6 +32,13 @@
             "password": "123",
             "adm": "on",
             "wishList": []
+        },
+        {
+            "id": 2,
+            "email": "teste@1234",
+            "password": "1234",
+            "adm": false,
+            "wishList": []
         }
     ]
 }

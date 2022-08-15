@@ -4,7 +4,13 @@ const productsFunctions = require("../functions/productsFunctions");
 class UserController {
 
     async getCreateUser (req, res) {
-        res.render("create-user")
+        let userAdm = false
+
+        if (req.session.user) {
+            const user = await userFunctions.findUserById(req.session.user.id)
+            userAdm = user.adm
+        }
+        res.render("create-user", {userAdm})
     }
 
     async getAccount (req, res) {

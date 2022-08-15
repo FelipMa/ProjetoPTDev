@@ -1,11 +1,21 @@
 const productsFunctions = require("../functions/productsFunctions");
+const userFunctions = require("../functions/usersFunctions");
 
 class ProductController {
 
     async getManageProducts (req, res) {
         const products = await productsFunctions.findAllProducts()
-        
-        res.render("manage-products", {products})
+
+        if (req.session.user) {
+            const user = await userFunctions.findUserById(req.session.user.id)
+
+            const userAdm = user.adm
+
+            res.render("manage-products", {products, req, userAdm})
+        }
+        else {
+            res.render("manage-products", {products, req})
+        }
     }
 
     async getListProducts (req, res) {

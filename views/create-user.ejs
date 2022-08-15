@@ -12,8 +12,10 @@
     <form method="POST" action="/create-user/register">
         <input type="email" name="email" placeholder="Enter email">
         <input type="password" name="password" placeholder="Enter password">
-        <label for="adm">adm</label>
-        <input type="checkbox" name="adm" placeholder="Enter adm">
+        <% if (userAdm === "on") { %>
+            <label for="adm">adm</label>
+            <input type="checkbox" name="adm" placeholder="Enter adm">
+        <% } %>
         <button type="submit">Register</button>
     </form>
 
