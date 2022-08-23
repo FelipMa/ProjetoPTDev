@@ -32,6 +32,8 @@ class ProductsFunctions {
             console.log("A product with this name already exists");
         }
         else{
+            price = parseInt(price)
+            stock = parseInt(stock)
             const product = new Product({name, price, stock});
     
         db.data.products.push(product);
@@ -88,8 +90,8 @@ class ProductsFunctions {
                 const previewName = db.data.products[index].name
                 
                 exists.name = name
-                exists.price = price
-                exists.stock = stock
+                exists.price = parseInt(price)
+                exists.stock = parseInt(stock)
 
                 db.data.products[index] = exists;
         
@@ -109,6 +111,8 @@ class ProductsFunctions {
         else{
             const index = db.data.products.findIndex(product => product.id === productId);
             const name = db.data.products[index].name
+
+            quantity = parseInt(quantity)
 
             if (exists.stock - quantity >= 0) {
                 exists.stock -= quantity

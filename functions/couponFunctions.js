@@ -31,6 +31,7 @@ class CouponFunctions {
             console.log("A coupon with this code already exists");
         }
         else{
+            discount = parseInt(discount)
             const coupon = new Coupon({code, discount});
     
         db.data.coupons.push(coupon);
@@ -87,7 +88,7 @@ class CouponFunctions {
                 const previewCode = db.data.coupons[index].code
                 
                 exists.code = code
-                exists.discount = discount
+                exists.discount = parseInt(discount)
 
                 db.data.coupons[index] = exists;
         

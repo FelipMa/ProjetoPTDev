@@ -11,7 +11,7 @@
     <h3>Estado atual:</h3>
     <h4>Nome: <%= product.name %></h4>
     <h4>Preço: <%= product.price %></h4>
-    <h4>Estoque: <%= product.stock %></h4>
+    <h4>Estoque: <%= product.stock %> <% if (product.stock < 10) { %> (Baixo Estoque) <% }; %></h4>
 
     <h1>Comprar Produto</h1>
     <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>

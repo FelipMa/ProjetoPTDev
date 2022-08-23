@@ -3,26 +3,26 @@
         {
             "id": 1,
             "name": "1",
-            "price": "1",
-            "stock": 4
+            "price": 1,
+            "stock": 1
         },
         {
             "id": 2,
             "name": "2",
-            "price": "2",
-            "stock": 3
+            "price": 2,
+            "stock": 9
         },
         {
             "id": 3,
             "name": "3",
-            "price": "3",
-            "stock": "7"
+            "price": 3,
+            "stock": 10
         },
         {
-            "id": 5,
-            "name": "5",
-            "price": "5",
-            "stock": 9
+            "id": 4,
+            "name": "4",
+            "price": 7,
+            "stock": 17
         }
     ],
     "users": [
@@ -45,12 +45,12 @@
         {
             "id": 1,
             "code": "123",
-            "discount": "1"
+            "discount": 1
         },
         {
             "id": 2,
             "code": "1234",
-            "discount": "7"
+            "discount": 2
         }
     ]
 }
