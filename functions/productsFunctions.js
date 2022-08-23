@@ -99,7 +99,7 @@ class ProductsFunctions {
         }
     }
 
-    async buyProduct(productId, quantity = 1){
+    async buyProduct(productId, quantity = 1, discount = 0){
 
         const exists = await this.findProductById(productId);
     
@@ -115,7 +115,7 @@ class ProductsFunctions {
                 db.data.products[index] = exists;
 
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                console.log(`Successfully bought ${quantity} units of product ${name}, new stock: ${exists.stock}`)
+                console.log(`Successfully bought ${quantity} units of product ${name} for ${exists.price - discount} reais each, new stock: ${exists.stock}`)
             }
             else {
                 console.log("Quantity to buy is higher than stock")

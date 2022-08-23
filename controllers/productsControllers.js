@@ -1,20 +1,22 @@
 const productsFunctions = require("../functions/productsFunctions");
 const userFunctions = require("../functions/usersFunctions");
+const couponFunctions = require("../functions/couponFunctions")
 
 class ProductController {
 
     async getManageProducts (req, res) {
         const products = await productsFunctions.findAllProducts()
+        const coupons = await couponFunctions.findAllCoupons()
 
         if (req.session.user) {
             const user = await userFunctions.findUserById(req.session.user.id)
 
             const userAdm = user.adm
 
-            res.render("manage-products", {products, req, userAdm})
+            res.render("manage-products", {products, coupons, req, userAdm})
         }
         else {
-            res.render("manage-products", {products, req})
+            res.render("manage-products", {products, coupons, req})
         }
     }
 
@@ -66,13 +68,21 @@ class ProductController {
     }
 
     async buyProduct (req, res) {
-        const {quantity} = req.body
+        const {quantity, code} = req.body
 
         const productId = req.params.productId;
-
         const productIdInt = parseInt(productId)
 
-        await productsFunctions.buyProduct(productIdInt, quantity)
+        const coupon = await couponFunctions.findCouponByCode(code)
+
+        let discountInt = 0
+
+        if (coupon) {
+            const discount = coupon.discount
+            discountInt = parseInt(discount)
+        }
+
+        await productsFunctions.buyProduct(productIdInt, quantity, discountInt)
         
         res.redirect(req.get('referer'));
     }

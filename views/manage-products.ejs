@@ -22,6 +22,14 @@
             <button type="submit">Submit</button>
         </form>
 
+        <h1>Create Coupon</h1>
+
+        <form method="POST" action="/manage-products/create-coupon">
+            <input type="text" name="code" placeholder="Enter Coupon Code">
+            <input type="text" name="discount" placeholder="Enter Discount">
+            <button type="submit">Submit</button>
+        </form>
+
         <h1>List of Products</h1>
 
         <% if (products.length) { %>
@@ -48,6 +56,33 @@
             </table>
         <% } else {%>
             <h3>No products found</h3>
+        <% } %>
+
+
+        <h1>List of Coupons</h1>
+
+        <% if (coupons.length) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Discount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% coupons.forEach(function(coupon) {  %>
+                        <tr>
+                            <td><%= coupon.code %></td>
+                            <td><%= coupon.discount %></td>
+                            <td>
+                                <a href=<%= `/manage-products/edit-coupon/${coupon.id}` %>>Edit</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else {%>
+            <h3>No coupons found</h3>
         <% } %>
 
     <% } %>

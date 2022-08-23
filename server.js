@@ -6,6 +6,7 @@ const homeRoutes = require("./routers/homeRouters")
 const productRoutes = require("./routers/productsRouters")
 const userRoutes = require("./routers/userRouters")
 const wishListRoutes = require("./routers/wishListRouters")
+const couponRoutes = require("./routers/couponRouters")
 const sessions = require('express-session');
 
 app.use(sessions({
@@ -30,6 +31,7 @@ async function runApp() {
     app.use(productRoutes)
     app.use(userRoutes)
     app.use(wishListRoutes)
+    app.use(couponRoutes)
 }
 
 runApp()

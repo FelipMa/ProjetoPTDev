@@ -22,7 +22,7 @@
             "id": 5,
             "name": "5",
             "price": "5",
-            "stock": 6
+            "stock": 9
         }
     ],
     "users": [
@@ -39,6 +39,18 @@
             "password": "1234",
             "adm": false,
             "wishList": []
+        }
+    ],
+    "coupons": [
+        {
+            "id": 1,
+            "code": "123",
+            "discount": "1"
+        },
+        {
+            "id": 2,
+            "code": "1234",
+            "discount": "7"
         }
     ]
 }

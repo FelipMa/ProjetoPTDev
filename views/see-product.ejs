@@ -16,6 +16,7 @@
     <h1>Comprar Produto</h1>
     <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
         <input type="text" name="quantity" placeholder="Enter Quantity">
+        <input type="text" name="code" placeholder="Enter Coupon Code">
         <button type="submit">Buy</button>
     </form>
 </body>
