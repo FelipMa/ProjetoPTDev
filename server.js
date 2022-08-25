@@ -8,6 +8,7 @@ const userRoutes = require("./routers/userRouters")
 const wishListRoutes = require("./routers/wishListRouters")
 const couponRoutes = require("./routers/couponRouters")
 const sessions = require('express-session');
+const expressLayouts = require('express-ejs-layouts');
 
 app.use(sessions({
     secret: "secretsecretsecret",
@@ -20,6 +21,10 @@ app.listen(port, () => console.log(`App listening on port ${port}!`));
 
 //middlewares:
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.set('layout', 'main');
+app.use(express.static("public"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

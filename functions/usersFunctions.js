@@ -124,7 +124,12 @@ class UsersFunctions {
     }
 
     async userLogout(req){
+        const id = req.session.user.id
+        const user = await this.findUserById(id)
+        const email = user.email
+
         req.session.destroy()
+        console.log(`User ${email} successfully logged out`)
     }
 }
 
