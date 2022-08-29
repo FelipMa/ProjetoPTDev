@@ -4,6 +4,7 @@
     <form method="POST" action="/create-user/register">
         <input type="email" name="email" placeholder="Enter email">
         <input type="password" name="password" placeholder="Enter password">
+        <input type="password" name="confirmPassword" placeholder="Confirm password">
         <% if (userAdm === "on") { %>
             <label for="adm">adm</label>
             <input type="checkbox" name="adm" placeholder="Enter adm">

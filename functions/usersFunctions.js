@@ -16,7 +16,7 @@ class UsersFunctions {
         return foundUser;
     }
 
-    async createUser(email, password, adm = false) {
+    async createUser(email, password, confirmPassword, adm = false) {
 
         if (email === undefined || password === "") {
             throw new Error ("email is necessary")
@@ -32,12 +32,17 @@ class UsersFunctions {
             console.log("A user with this email already exists");
         }
         else{
-            const user = new User({email, password, adm});
+            if (password === confirmPassword) {
+                const user = new User({email, password, adm});
     
-        db.data.users.push(user);
-    
-        await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-        console.log(`Successfully created user ${email}`)
+                db.data.users.push(user);
+            
+                await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
+                console.log(`Successfully created user ${email}`)
+            }
+            else{
+                console.log("Password is not confirmed")
+            }
         }
     }
 

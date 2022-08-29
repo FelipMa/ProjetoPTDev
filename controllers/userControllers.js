@@ -31,9 +31,9 @@ class UserController {
     }
 
     async registerUser (req, res) {
-        const {email, password, adm} = req.body
+        const {email, password, confirmPassword, adm} = req.body
 
-        await userFunctions.createUser(email, password, adm)
+        await userFunctions.createUser(email, password, confirmPassword, adm)
 
         res.redirect(req.get('referer'));
     }
@@ -73,9 +73,9 @@ class UserController {
     async deleteUser (req, res) {
         const userId = req.session.user.id
 
-        await userFunctions.deleteUser(userId)
-
         await userFunctions.userLogout(req)
+
+        await userFunctions.deleteUser(userId)
 
         res.redirect("/create-user")
     }
