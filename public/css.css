@@ -1,14 +1,88 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Universal */
 
 body {
-    background-color: white;
+    background-color: #EDE8E8;
 }
 
-header, footer {
-    background-color: gainsboro;
-    margin: 1rem 0;
+footer {
+    background-color: #E2E2E2;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #E2E2E2;
+    max-height: 5rem;
+    z-index: 2;
+}
+
+.navbar:hover{
+    opacity: 1;
+}
+
+.navbar-nav {
+    font-family: "Bebas Neue";
+    font-size: 2rem;
+}
+
+#myNavbarItems {
+    position: relative;
+    width: max-content;
+}
+
+#collapsibleItems {
+    position: absolute;
+    right: 0px;
+    background-color: #E2E2E2;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.item-dropdown-user {
+    font-family: "Bebas Neue";
+}
+
+/* Landing Page */
+
+#landingPage {
+    background-image: url(https://www.crushpixel.com/big-static15/preview4/worn-blue-denim-jeans-texture-1967743.jpg);
+}
+
+#landingPage > .navbar {
+    opacity: 0.8;
+}
+
+.encaixe-de-imagem {
+    object-fit: contain;
+    height: 3em;
+}
+
+#landingPage > main > h1 {
+    color: #f2a900;
+    text-shadow: 2px 2px 5px black;
+    position: absolute;
+    top: 40%;
+    transform: translate(0, -50%);
+    font-family: "Bebas Neue";
+}
+
+#landingPage > main > h6 {
+    color:aliceblue;
+    background: rgba(120, 104, 104, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    transform: translate(0, 50%);
+    max-width: 75%;
+    font-family: "Montserrat";
+}
+
+/* registroPage */
+
+#registroPage > main {
+    max-width: 100%;
+    font-family: "Bebas Neue";
+    margin-top: 2rem;
 }
