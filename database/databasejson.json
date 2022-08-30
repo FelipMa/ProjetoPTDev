@@ -23,6 +23,18 @@
             "name": "4",
             "price": 7,
             "stock": 17
+        },
+        {
+            "id": 5,
+            "name": "dada",
+            "price": 4,
+            "stock": 2
+        },
+        {
+            "id": 6,
+            "name": "dfd",
+            "price": 4,
+            "stock": 3
         }
     ],
     "users": [
@@ -51,6 +63,11 @@
             "id": 2,
             "code": "1234",
             "discount": 2
+        },
+        {
+            "id": 3,
+            "code": "4624",
+            "discount": 10
         }
     ]
 }

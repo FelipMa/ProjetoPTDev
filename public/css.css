@@ -6,8 +6,8 @@ body {
 
 footer {
     background-color: #E2E2E2;
-    position: fixed;
     bottom: 0;
+    z-index: -1;
     width: 100%;
 }
 
@@ -15,6 +15,7 @@ footer {
     background-color: #E2E2E2;
     max-height: 5rem;
     z-index: 2;
+    opacity: 0.8;
 }
 
 .navbar:hover{
@@ -43,20 +44,12 @@ footer {
     font-family: "Bebas Neue";
 }
 
-/* Landing Page */
-
-#landingPage {
-    background-image: url(https://www.crushpixel.com/big-static15/preview4/worn-blue-denim-jeans-texture-1967743.jpg);
-}
-
-#landingPage > .navbar {
-    opacity: 0.8;
-}
-
 .encaixe-de-imagem {
     object-fit: contain;
     height: 3em;
 }
+
+/* Landing Page */
 
 #landingPage > main > h1 {
     color: #f2a900;
@@ -81,7 +74,7 @@ footer {
 
 /* registroPage */
 
-#registroPage > main {
+#registroPage {
     max-width: 100%;
     font-family: "Bebas Neue";
     margin-top: 2rem;
