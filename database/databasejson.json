@@ -2,25 +2,13 @@
     "products": [
         {
             "id": 5,
-            "name": "Tenis Loco",
-            "price": 8,
+            "name": "Tenis Doido",
+            "price": 10,
             "stock": 76
         },
         {
-            "id": 6,
-            "name": "fghd",
-            "price": 4,
-            "stock": 55
-        },
-        {
-            "id": 7,
-            "name": "f",
-            "price": 7,
-            "stock": 57
-        },
-        {
             "id": 8,
-            "name": "ele",
+            "name": "eles",
             "price": 33,
             "stock": 1
         },
@@ -37,10 +25,10 @@
             "stock": 12
         },
         {
-            "id": 11,
-            "name": "Último 3 Três",
-            "price": 2,
-            "stock": 8
+            "id": 12,
+            "name": "Sapato Doido5",
+            "price": 564,
+            "stock": 1
         }
     ],
     "users": [
@@ -62,13 +50,8 @@
     "coupons": [
         {
             "id": 5,
-            "code": "O Primeiro 1",
-            "discount": 32
-        },
-        {
-            "id": 6,
-            "code": "dfsaf",
-            "discount": 342
+            "code": "O Primeiro 10",
+            "discount": 3
         },
         {
             "id": 7,
@@ -92,8 +75,13 @@
         },
         {
             "id": 11,
-            "code": "Final-1",
-            "discount": 120
+            "code": "Sinal-10",
+            "discount": 1200
+        },
+        {
+            "id": 12,
+            "code": "ssss44442222",
+            "discount": 55
         }
     ]
 }

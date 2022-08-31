@@ -59,13 +59,14 @@
                         <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
                         <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
                         <!-- Botão ativador de modal de edição de produto -->
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#editProductModal" class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
+                        <button type="button" data-bs-toggle="modal" data-bs-target= <%= `#editProductModal${product.id}` %>
+                        class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
                         </button>
                         <!-- Modal de Edição de Produtos -->
-                        <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id=<%= `editProductModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -73,7 +74,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="POST" id="editProducts" action=<%= `/manage-products/edit-product/${product.id}/update` %>>
+                                        <form method="POST" id=<%= `editProducts${product.id}` %> action=<%= `/manage-products/edit-product/${product.id}/update` %>>
                                             <!-- Informações do produto não editado -->
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="inputGroup-originalProduct">Produto Atual</span>
@@ -84,7 +85,8 @@
                                             <!-- Input group para o novo nome -->
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="inputGroup-editProduct-name">Novo Nome</span>
-                                                <input required type="text" name="name" placeholder="Ex.: Tênis Air Jordan" value=<%= `${product.name}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-name">
+                                                <input required type="text" name="name" placeholder="Ex.: Tênis Air Jordan" value="<%= product.name %>"
+                                                class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-name">
                                             </div>
                                             <!-- Input group para o novo preço -->
                                             <div class="input-group mb-3">
@@ -100,13 +102,14 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" form="editProducts" class="btn btn-primary">Atualizar Produto</button>
+                                        <button type="submit" form=<%= `editProducts${product.id}` %> class="btn btn-primary">Atualizar Produto</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Botão que deleta produto -->
-                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
+                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'"
+                            class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                 <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                             </svg>
@@ -123,7 +126,7 @@
         <section class="row ps-4" id="cadastrarCupons"></section>
             <div class="row px-4 border-bottom border-dark align-items-center">
                 <h2 class="col mb-0">Gestão de Cupons</h2>
-                <!-- Botão ativador de modal -->
+                <!-- Botão ativador de modal de criação de cupom -->
                 <button type="button" class="btn btn-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createCouponModal">+ Cadastrar Novo</button>
                 <!-- Modal de Criação de Cupons -->
                 <div class="modal fade" id="createCouponModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -167,13 +170,13 @@
                             <span class="col caseSensitiveFont px-0"><%= coupon.code %></span>
                             <span class="col caseSensitiveFont px-0">R$ <%= coupon.discount %>,00</span>
                             <!-- Botão ativador de modal de edição de cupom -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#editCouponModal" class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
+                            <button type="button" data-bs-toggle="modal" data-bs-target=<%= `#editCouponModal${coupon.id}` %> class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                 </svg>
                             </button>
                             <!-- Modal de Edição de Cupons -->
-                            <div class="modal fade" id="editCouponModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id=<%= `editCouponModal${coupon.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -181,7 +184,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" id="editCupouns" action=<%= `/manage-products/edit-coupon/${coupon.id}/update` %>>
+                                            <form method="POST" id=<%= `editCoupons${coupon.id}` %> action=<%= `/manage-products/edit-coupon/${coupon.id}/update` %>>
                                                 <!-- Informações do cupom não editado -->
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="inputGroup-originalCoupon">Cupom Atual</span>
@@ -191,7 +194,7 @@
                                                 <!-- Input group para o novo código -->
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="inputGroup-editCoupon-code">Novo Código</span>
-                                                    <input required type="text" name="code" class="form-control caseSensitiveFont" placeholder="Ex.: 1a2b3c" value=<%= `${coupon.code}` %> aria-label="Sizing example input" aria-describedby="inputGroup-editCoupon-code">
+                                                    <input required type="text" name="code" class="form-control caseSensitiveFont" placeholder="Ex.: 1a2b3c" value="<%= coupon.code %>" aria-label="Sizing example input" aria-describedby="inputGroup-editCoupon-code">
                                                 </div>
                                                 <!-- Input group para o novo desconto -->
                                                 <div class="input-group mb-3">
@@ -202,7 +205,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="submit" form="editCupouns" class="btn btn-primary">Atualizar Cupom</button>
+                                            <button type="submit" form=<%= `editCoupons${coupon.id}` %> class="btn btn-primary">Atualizar Cupom</button>
                                         </div>
                                     </div>
                                 </div>
