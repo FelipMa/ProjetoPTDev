@@ -16,6 +16,16 @@ footer {
     height: 50px;
 }
 
+.caseSensitiveFont {
+    font-family: "Montserrat";
+}
+
+.testBorder {
+    border: 1px solid red;
+}
+
+/* Navbar */
+
 .navbar {
     position: fixed;
     background-color: #E2E2E2;

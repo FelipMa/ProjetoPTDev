@@ -4,112 +4,220 @@
         <h1>Acesso Restrito</h1>
 
     <% } else {%>
+        <!-- Seção de Gestão de Produtos -->
         <section class="row ps-4" id="cadastrarProdutos">
             <div class="row border-bottom border-dark align-items-center">
                 <h2 class="col mb-0">Gestão de Produtos</h2>
+                <!-- Botão ativador de modal de criação de produto -->
                 <button type="button" class="btn btn-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createProductModal">+ Cadastrar Novo</button>
-                <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="/manage-products/create-product" id="cadastroProdutos">
-                                <input type="text" name="name" placeholder="Enter Name">
-                                <input type="text" name="price" placeholder="Enter Price">
-                                <input type="text" name="stock" placeholder="Enter Stock">
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" form="cadastroProdutos" class="btn btn-primary">Cadastrar Produto</button>
+                <!-- Modal de Criação de Produtos -->
+                    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="/manage-products/create-product" id="cadastroProdutos"></form>
+                                    <!-- Nome do Produto -->
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-createProduct-name">Nome</span>
+                                        <input required type="text" form="cadastroProdutos" name="name" placeholder="Ex.: Tênis Air Jordan" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-name">                                       
+                                    </div>
+                                    <!-- Preço do Produto -->
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-createProduct-price">Preço (R$)</span>
+                                        <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" form="cadastroProdutos" name="price" placeholder="Ex.: 439" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-price">
+                                    </div>
+                                    <!-- Estoque do Produto -->
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-createProduct-stock">Estoque Atual</span>
+                                        <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" form="cadastroProdutos" name="stock" placeholder="Ex.: 8" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-stock">
+                                    </div>
+                                  </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" form="cadastroProdutos" class="btn btn-primary">Cadastrar Produto</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
             </div>
 
             <% if (products.length) { %>
-                <div class="row ms-0 mb-0 pb-0 pt-4 px-4">
+                <div class="row mb-0 pb-0 pt-4 px-4">
                     <h5 class="col ps-0">Nome</h5>
                     <h5 class="col ps-0">Preço</h5>
                     <h5 class="col ps-0">Quantidade</h5>
                     <div class="col-2 ms-2"></div>
                 </div>
                 <% products.forEach(function(product) {  %>
-                    <div class="row ms-0 p-4 pt-0">
-                        <span class="col"><%= product.name %></span>
-                        <span class="col"><%= product.price %></span>
-                        <span class="col"><%= product.stock %></span>
-                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}` %>'" class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
+                    <!-- Linhas da listagem de produtos -->
+                    <div class="row p-4 pt-0">
+                        <span class="col ps-0 caseSensitiveFont"><%= product.name %></span>
+                        <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
+                        <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
+                        <!-- Botão ativador de modal de edição de produto -->
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#editProductModal" class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
                         </button>
-                        <button class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
+                        <!-- Modal de Edição de Produtos -->
+                        <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><%= `Editar produto '${product.name}'` %></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" id="editProducts" action=<%= `/manage-products/edit-product/${product.id}/update` %>>
+                                            <!-- Informações do produto não editado -->
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="inputGroup-originalProduct">Produto Atual</span>
+                                                <input type="text" form="NaoExiste" readonly name="code" value="<%= product.name %>" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                                <input type="text" form="NaoExiste" readonly name="code" value="R$ <%= product.price %>,00" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                                <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> item(ns)" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                            </div>
+                                            <!-- Input group para o novo nome -->
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="inputGroup-editProduct-name">Novo Nome</span>
+                                                <input required type="text" name="name" placeholder="Ex.: Tênis Air Jordan" value=<%= `${product.name}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-name">
+                                            </div>
+                                            <!-- Input group para o novo preço -->
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="inputGroup-editProduct-price">Novo Valor</span>
+                                                <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="price" placeholder="Ex.: 439" value=<%= `${product.price}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-price">
+                                            </div>
+                                            <!-- Input group para o novo estoque -->
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="inputGroup-editProduct-stock">Novo Estoque</span>
+                                                <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="stock" placeholder="Ex.: 8" value=<%= `${product.stock}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-stock">
+                                            </div>
+                                        </form>                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" form="editProducts" class="btn btn-primary">Atualizar Produto</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Botão que deleta produto -->
+                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                 <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                             </svg>
                         </button>
+
                     </div>
                 <% }); %>
             <% } else {%>
-                <h3>No products found</h3>
+                <h3>Não há produtos disponíveis</h3>
             <% } %>
         </section>
 
+        <!-- Seção de Gestão de Cupons -->
         <section class="row ps-4" id="cadastrarCupons"></section>
-            <div class="px-4 row border-bottom border-dark align-items-center">
+            <div class="row px-4 border-bottom border-dark align-items-center">
                 <h2 class="col mb-0">Gestão de Cupons</h2>
+                <!-- Botão ativador de modal -->
                 <button type="button" class="btn btn-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createCouponModal">+ Cadastrar Novo</button>
+                <!-- Modal de Criação de Cupons -->
                 <div class="modal fade" id="createCouponModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Novo Cupom</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Novo Cupom</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/manage-products/create-coupon" id="cadastroCupons"></form>
+                                <!-- Código do Cupom -->
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-createCoupon-code">Código do Cupom</span>
+                                    <input required type="text" name="code" placeholder="Ex.: 1a2b3c" form="cadastroCupons" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createCoupon-code">
+                                </div>
+                                <!-- Desconto do Cupom -->
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-createCoupon-discount">Desconto (R$)</span>
+                                    <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="discount" placeholder="Ex.: 15" form="cadastroCupons" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createCoupon-discount">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" form="cadastroCupons" class="btn btn-primary">Cadastrar Cupom</button>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form method="POST" action="/manage-products/create-coupon" id="cadastroCupons">
-                                <input type="text" name="code" placeholder="Enter Coupon Code">
-                                <input type="text" name="discount" placeholder="Enter Discount">
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" form="cadastroCupons" class="btn btn-primary">Cadastrar Cupom</button>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
 
             <% if (coupons.length) { %>
-                    <div class="row ms-0 mb-0 pb-0 pt-4 px-4">
+                    <div class="row mb-0 ms-0 me-0 pb-0 pt-4 px-4">
                         <h5 class="col ps-0">Código</h5>
                         <h5 class="col ps-0">Desconto</h5>
                         <div class="col-2 ms-2"></div>
                     </div>
                     <% coupons.forEach(function(coupon) {  %>
-                        <div class="row ms-0 p-4 pt-0">
-                                <span class="col"><%= coupon.code %></span>
-                                <span class="col"><%= coupon.discount %></span>
-                                <button type="button" onclick="location.href='<%= `/manage-products/edit-coupon/${coupon.id}` %>'" class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                    </svg>
-                                </button>
-                                <button class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                    </svg>
-                                </button>
+                        <!-- Linhas da listagem de cupons -->
+                        <div class="row ms-0 p-4 pt-0 me-0">
+                            <span class="col caseSensitiveFont px-0"><%= coupon.code %></span>
+                            <span class="col caseSensitiveFont px-0">R$ <%= coupon.discount %>,00</span>
+                            <!-- Botão ativador de modal de edição de cupom -->
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#editCouponModal" class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </button>
+                            <!-- Modal de Edição de Cupons -->
+                            <div class="modal fade" id="editCouponModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><%= `Editar cupom '${coupon.code}'` %></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" id="editCupouns" action=<%= `/manage-products/edit-coupon/${coupon.id}/update` %>>
+                                                <!-- Informações do cupom não editado -->
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="inputGroup-originalCoupon">Cupom Atual</span>
+                                                    <input type="text" form="NaoExiste" readonly name="code" value="<%= coupon.code %>" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalCoupon">
+                                                    <input type="text" form="NaoExiste" readonly name="code" value="R$ <%= coupon.discount %>,00" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalCoupon">
+                                                </div>
+                                                <!-- Input group para o novo código -->
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="inputGroup-editCoupon-code">Novo Código</span>
+                                                    <input required type="text" name="code" class="form-control caseSensitiveFont" placeholder="Ex.: 1a2b3c" value=<%= `${coupon.code}` %> aria-label="Sizing example input" aria-describedby="inputGroup-editCoupon-code">
+                                                </div>
+                                                <!-- Input group para o novo desconto -->
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="inputGroup-editCoupon-discount">Novo Desconto</span>
+                                                    <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="discount" class="form-control caseSensitiveFont" placeholder="Ex.: 15" value=<%= `${coupon.discount}` %> aria-label="Sizing example input" aria-describedby="inputGroup-editCoupon-discount">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" form="editCupouns" class="btn btn-primary">Atualizar Cupom</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Botão que deleta cupom -->
+                            <button type="button" onclick="location.href='<%= `/manage-products/edit-coupon/${coupon.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                </svg>
+                            </button>
                         </div>
+                        
                     <% }); %>
             <% } else {%>
-                <h3>No coupons found</h3>
+                <h3>Sem cupons cadastrados</h3>
             <% } %>
         </section>
     <% } %>

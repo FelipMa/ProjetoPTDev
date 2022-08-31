@@ -1,4 +1,4 @@
-<div>>
+<div>
 
     <h1><%= `Editar produto ${product.name}` %></h1>
     <h3>Estado atual:</h3>
@@ -12,9 +12,5 @@
         <input type="text" name="stock" placeholder="Enter New Stock" value=<%= `${product.stock}` %>>
         <button type="submit">Update</button>
     </form>
-
-    <button>
-        <a href=<%= `/manage-products/edit-product/${product.id}/delete` %>>Delete product</a>
-    </button>
 
 </div>
