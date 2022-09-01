@@ -9,6 +9,7 @@ const wishListRoutes = require("./routers/wishListRouters")
 const couponRoutes = require("./routers/couponRouters")
 const sessions = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
+require('express-dynamic-helpers-patch')(app);
 
 app.use(sessions({
     secret: "secretsecretsecret",
@@ -24,6 +25,12 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('layout', 'main');
 app.use(express.static("public"));
+
+app.dynamicHelpers({
+    req: function(req, res){
+      return req;
+    }
+  });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
