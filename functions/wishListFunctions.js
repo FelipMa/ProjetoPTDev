@@ -5,6 +5,8 @@ const fs = require("fs");
 class WishListFunctions {
 
     async addToWishList(product, user) {
+
+        let message = ""
         let exist = false
 
         for (let i = 0; i < user.wishList.length; i++) {
@@ -24,12 +26,14 @@ class WishListFunctions {
             db.data.users[index] = user;
         
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-        
-            console.log(`Succesfully add product ${product.name} to your wish list`)
+
+            message = `Succesfully add product ${product.name} to your wish list`
+            console.log(`${message}`)
         }
 
         else {
-            console.log("This product is already in your wish list")
+            message = "This product is already in your wish list"
+            console.log(`${message}`)
         }  
     }
 
@@ -45,7 +49,8 @@ class WishListFunctions {
 
         await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
 
-        console.log(`Successfully removed product ${delName} from your wish list`)
+        let message = `Successfully removed product ${delName} from your wish list`
+        console.log(`${message}`)
     }
 
     async refreshWishList(user) {

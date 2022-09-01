@@ -21,6 +21,9 @@ class CouponFunctions {
     }
 
     async createCoupon(code, discount){
+
+        let message = ""
+
         if (code === undefined || code === "") {
             throw new Error ("coupon code is necessary")
         }
@@ -28,7 +31,8 @@ class CouponFunctions {
         const exists = await this.findCouponByCode(code);
     
         if (exists) {
-            console.log("A coupon with this code already exists");
+            message = "A coupon with this code already exists"
+            console.log(`${message}`);
         }
         else{
             discount = parseInt(discount)
@@ -37,7 +41,8 @@ class CouponFunctions {
         db.data.coupons.push(coupon);
     
         await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-        console.log(`Successfully created coupon ${code}`)
+        message = `Successfully created coupon ${code}`
+        console.log(`${message}`)
 
         return coupon;
         }
@@ -45,10 +50,13 @@ class CouponFunctions {
 
     async deleteCoupon(couponId) {
 
+        let message = ""
+
         const exists = await this.findCouponById(couponId);
     
         if (!exists) {
-            console.log("A coupon with this id does not exist");
+            message = "A coupon with this id does not exist"
+            console.log(`${message}`);
         }
         else{
             const couponIndex = db.data.coupons.findIndex(coupon => coupon.id === couponId);
@@ -57,11 +65,14 @@ class CouponFunctions {
             db.data.coupons.splice(couponIndex, 1);
     
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-            console.log(`Successfully deleted coupon ${delCode}`)
+            message = `Successfully deleted coupon ${delCode}`
+            console.log(`${message}`)
         }
     }
 
     async updateCoupon(couponId, code, discount = 0) {
+
+        let message = ""
 
         if (code === undefined || code === "") {
             throw new Error ("code is necessary")
@@ -77,11 +88,13 @@ class CouponFunctions {
         }
 
         if (!exists) {
-            console.log("A coupon with this id does not exist");
+            message = "A coupon with this id does not exist"
+            console.log(`${message}`);
         }
         else{
             if (code != exists.code && code === otherCode.code) {
-                console.log("A coupon with this code already exists");
+                message = "A coupon with this code already exists"
+                console.log(`${message}`);
             } 
             else {
                 const index = db.data.coupons.findIndex(coupon => coupon.id === couponId);
@@ -93,7 +106,8 @@ class CouponFunctions {
                 db.data.coupons[index] = exists;
         
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                console.log(`Successfully updated coupon ${previewCode} to coupon ${code}`)
+                message = `Successfully updated coupon ${previewCode} to coupon ${code}`
+                console.log(`${message}`)
             }
         }
     }

@@ -22,6 +22,8 @@ class ProductsFunctions {
 
     async createProduct(name, price = 0, stock = 0) {
 
+        let message = ""
+
         if (name === undefined || name === "") {
             throw new Error ("name is necessary")
         }
@@ -29,7 +31,8 @@ class ProductsFunctions {
         const exists = await this.findProductByName(name);
     
         if (exists) {
-            console.log("A product with this name already exists");
+            message = "A product with this name already exists"
+            console.log(`${message}`);
         }
         else{
             price = parseInt(price)
@@ -39,7 +42,8 @@ class ProductsFunctions {
         db.data.products.push(product);
     
         await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-        console.log(`Successfully created product ${name}`)
+        message = `Successfully created product ${name}`
+        console.log(`${message}`)
 
         return product;
         }
@@ -47,10 +51,13 @@ class ProductsFunctions {
 
     async deleteProduct(productId) {
 
+        let message = ""
+
         const exists = await this.findProductById(productId);
     
         if (!exists) {
-            console.log("A product with this id does not exist");
+            message = "A product with this id does not exist"
+            console.log(`${message}`);
         }
         else{
             const productIndex = db.data.products.findIndex(product => product.id === productId);
@@ -59,11 +66,14 @@ class ProductsFunctions {
             db.data.products.splice(productIndex, 1);
     
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-            console.log(`Successfully deleted product ${delName}`)
+            message = `Successfully deleted product ${delName}`
+            console.log(`${message}`)
         }
     }
 
     async updateProduct(productId, name, price = 0, stock = 0) {
+
+        let message = ""
 
         if (name === undefined || name === "") {
             throw new Error ("name is necessary")
@@ -79,11 +89,13 @@ class ProductsFunctions {
         }
 
         if (!exists) {
-            console.log("A product with this id does not exist");
+            message = "A product with this id does not exist"
+            console.log(`${message}`);
         }
         else{
             if (name != exists.name && name === otherName.name) {
-                console.log("A product with this name already exists");
+                message = "A product with this name already exists"
+                console.log(`${message}`);
             } 
             else {
                 const index = db.data.products.findIndex(product => product.id === productId);
@@ -96,17 +108,21 @@ class ProductsFunctions {
                 db.data.products[index] = exists;
         
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                console.log(`Successfully updated product ${previewName} to product ${name}`)
+                message = `Successfully updated product ${previewName} to product ${name}`
+                console.log(`${message}`)
             }
         }
     }
 
     async buyProduct(productId, quantity = 1, discount = 0){
 
+        let message = ""
+
         const exists = await this.findProductById(productId);
     
         if (!exists) {
-            console.log("A product with this id does not exist");
+            message = "A product with this id does not exist"
+            console.log(`${message}`);
         }
         else{
             const index = db.data.products.findIndex(product => product.id === productId);
@@ -119,15 +135,20 @@ class ProductsFunctions {
                 db.data.products[index] = exists;
 
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                console.log(`Successfully bought ${quantity} units of product ${name} for ${exists.price - discount} reais each, new stock: ${exists.stock}`)
+                message = `Successfully bought ${quantity} units of product ${name} for ${exists.price - discount} reais each, new stock: ${exists.stock}`
+                console.log(`${message}`)
             }
             else {
-                console.log("Quantity to buy is higher than stock")
+                message = "Quantity to buy is higher than stock"
+                console.log(`${message}`)
             }
         }
     }
 
     async addToCart(productId, req) {
+
+        let message = ""
+
         if (!req.session.cart) {
             req.session.cart = []
         } 
@@ -143,11 +164,13 @@ class ProductsFunctions {
         }
 
         if (exist === false) {
-                req.session.cart.push(product)
-        console.log(`Succesfully add product ${product.name} to cart`)
+            req.session.cart.push(product)
+            message = `Succesfully add product ${product.name} to cart`
+            console.log(`${message}`)
         }
         else {
-            console.log("This product is already in cart")
+            message = "This product is already in cart"
+            console.log(`${message}`)
         }
     }
 
@@ -173,14 +196,20 @@ class ProductsFunctions {
     }
 
     async removeFromCart(productId, req) {
+
+        let message = ""
+
         const productIndex = req.session.cart.findIndex(product => product.id === productId);
         const delName = req.session.cart[productIndex].name
 
         req.session.cart.splice(productIndex, 1);
-        console.log(`Successfully removed ${delName} from cart`)
+        message = `Successfully removed ${delName} from cart`
+        console.log(`${message}`)
     }
 
     async buyAllCart(req) {
+
+        let message = ""
 
         let available = true
         for (let j = 0; j < req.session.cart.length; j++) {
@@ -195,10 +224,12 @@ class ProductsFunctions {
     
                 await this.buyProduct(id, 1)
             }
-            console.log("Seccessfully bought all cart")
+            message = "Seccessfully bought all cart"
+            console.log(`${message}`)
         }
         else {
-            console.log("Not enought stock of one or more products")
+            message = "Not enought stock of one or more products"
+            console.log(`${message}`)
         }
     }
 }
