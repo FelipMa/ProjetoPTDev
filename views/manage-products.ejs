@@ -49,7 +49,7 @@
                 <div class="row mb-0 pb-0 pt-4 px-4">
                     <h5 class="col ps-0">Nome</h5>
                     <h5 class="col ps-0">Preço</h5>
-                    <h5 class="col ps-0">Quantidade</h5>
+                    <h5 class="col ps-0">Estoque</h5>
                     <div class="col-2 ms-2"></div>
                 </div>
                 <% products.forEach(function(product) {  %>
@@ -123,8 +123,8 @@
         </section>
 
         <!-- Seção de Gestão de Cupons -->
-        <section class="row ps-4" id="cadastrarCupons"></section>
-            <div class="row px-4 border-bottom border-dark align-items-center">
+        <section class="row ps-4" id="cadastrarCupons">
+            <div class="row border-bottom border-dark align-items-center">
                 <h2 class="col mb-0">Gestão de Cupons</h2>
                 <!-- Botão ativador de modal de criação de cupom -->
                 <button type="button" class="btn btn-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createCouponModal">+ Cadastrar Novo</button>
@@ -159,16 +159,16 @@
             </div>
 
             <% if (coupons.length) { %>
-                    <div class="row mb-0 ms-0 me-0 pb-0 pt-4 px-4">
+                    <div class="row mb-0 pb-0 pt-4 px-4">
                         <h5 class="col ps-0">Código</h5>
                         <h5 class="col ps-0">Desconto</h5>
                         <div class="col-2 ms-2"></div>
                     </div>
                     <% coupons.forEach(function(coupon) {  %>
                         <!-- Linhas da listagem de cupons -->
-                        <div class="row ms-0 p-4 pt-0 me-0">
-                            <span class="col caseSensitiveFont px-0"><%= coupon.code %></span>
-                            <span class="col caseSensitiveFont px-0">R$ <%= coupon.discount %>,00</span>
+                        <div class="row p-4 pt-0">
+                            <span class="col ps-0 caseSensitiveFont"><%= coupon.code %></span>
+                            <span class="col ps-0 caseSensitiveFont">R$ <%= coupon.discount %>,00</span>
                             <!-- Botão ativador de modal de edição de cupom -->
                             <button type="button" data-bs-toggle="modal" data-bs-target=<%= `#editCouponModal${coupon.id}` %> class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -220,7 +220,7 @@
                         
                     <% }); %>
             <% } else {%>
-                <h3>Sem cupons cadastrados</h3>
+                <h3>Não há cupons cadastrados</h3>
             <% } %>
         </section>
     <% } %>

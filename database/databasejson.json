@@ -2,7 +2,7 @@
     "products": [
         {
             "id": 5,
-            "name": "Tenis Doido",
+            "name": "Tenis Doido 1",
             "price": 10,
             "stock": 76
         },
@@ -23,12 +23,6 @@
             "name": "Ultimo 2",
             "price": 999,
             "stock": 12
-        },
-        {
-            "id": 12,
-            "name": "Sapato Doido5",
-            "price": 564,
-            "stock": 1
         }
     ],
     "users": [
@@ -79,9 +73,9 @@
             "discount": 1200
         },
         {
-            "id": 12,
-            "code": "ssss44442222",
-            "discount": 55
+            "id": 13,
+            "code": "promocaosexta",
+            "discount": 20
         }
     ]
 }
