@@ -82,6 +82,11 @@
             "id": 13,
             "code": "promocaosexta",
             "discount": 20
+        },
+        {
+            "id": 14,
+            "code": "teste",
+            "discount": 12
         }
     ]
 }

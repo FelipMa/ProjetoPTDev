@@ -30,7 +30,7 @@ class ProductController {
 
         const {name, price, stock} = req.body;
         
-        await productsFunctions.createProduct(name, price, stock)
+        req.session.msg = await productsFunctions.createProduct(name, price, stock)
     
         res.redirect("/manage-products");
     }
@@ -50,7 +50,7 @@ class ProductController {
 
         const productIdInt = parseInt(productId)
 
-        await productsFunctions.deleteProduct(productIdInt)
+        req.session.msg = await productsFunctions.deleteProduct(productIdInt)
 
         res.redirect("/manage-products");
     }
@@ -62,7 +62,7 @@ class ProductController {
 
         const productIdInt = parseInt(productId)
         
-        await productsFunctions.updateProduct(productIdInt, name, price, stock)
+        req.session.msg = await productsFunctions.updateProduct(productIdInt, name, price, stock)
     
         res.redirect("/manage-products");
     }
@@ -82,7 +82,7 @@ class ProductController {
             discountInt = parseInt(discount)
         }
 
-        await productsFunctions.buyProduct(productIdInt, quantity, discountInt)
+        req.session.msg = await productsFunctions.buyProduct(productIdInt, quantity, discountInt)
         
         res.redirect(req.get('referer'));
     }
@@ -102,7 +102,7 @@ class ProductController {
 
         const productIdInt = parseInt(productId)
 
-        await productsFunctions.addToCart(productIdInt, req)
+        req.session.msg = await productsFunctions.addToCart(productIdInt, req)
 
         res.redirect(req.get('referer'));
     }
@@ -120,13 +120,13 @@ class ProductController {
 
         const productIdInt = parseInt(productId)
 
-        await productsFunctions.removeFromCart(productIdInt, req)
+        req.session.msg = await productsFunctions.removeFromCart(productIdInt, req)
 
         res.redirect(req.get('referer'));
     }
 
     async buyAllCart (req, res) {
-        await productsFunctions.buyAllCart(req)
+        req.session.msg = await productsFunctions.buyAllCart(req)
 
         res.redirect(req.get('referer'));
     }

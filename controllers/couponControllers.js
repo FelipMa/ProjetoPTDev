@@ -15,8 +15,8 @@ class CouponController {
     async createCoupon (req, res) {
         const {code, discount} = req.body;
         
-        await couponFunctions.createCoupon(code, discount)
-    
+        req.session.msg = await couponFunctions.createCoupon(code, discount)
+
         res.redirect("/manage-products");
     }
 
@@ -25,7 +25,7 @@ class CouponController {
 
         const couponIdInt = parseInt(couponId)
 
-        await couponFunctions.deleteCoupon(couponIdInt)
+        req.session.msg = await couponFunctions.deleteCoupon(couponIdInt)
 
         res.redirect("/manage-products");
     }
@@ -37,7 +37,7 @@ class CouponController {
 
         const couponIdInt = parseInt(couponId)
         
-        await couponFunctions.updateCoupon(couponIdInt, code, discount)
+        req.session.msg = await couponFunctions.updateCoupon(couponIdInt, code, discount)
     
         res.redirect("/manage-products");
     }

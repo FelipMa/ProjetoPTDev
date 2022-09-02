@@ -15,7 +15,7 @@ class WishListController {
             res.render("wishList", {req, userWishList})
         }
         else {
-            res.render("wishList", {req})
+            res.render("wishList")
         }
     }
 
@@ -28,11 +28,12 @@ class WishListController {
             const product = await productsFunctions.findProductById(productIdInt)
             const user = await userFunctions.findUserById(req.session.user.id)
 
-            await wishListFunctions.addToWishList(product, user)
+            req.session.msg = await wishListFunctions.addToWishList(product, user)
         }
 
         else{
             console.log(`Need do be logged to add to wish list`)
+            req.session.msg = "Need to be logged to add to wish list"
         }
 
         res.redirect(req.get('referer'));
@@ -45,7 +46,7 @@ class WishListController {
         const product = await productsFunctions.findProductById(productIdInt)
         const user = await userFunctions.findUserById(req.session.user.id)
 
-        await wishListFunctions.removeFromWishList(product, user)
+        req.session.msg = await wishListFunctions.removeFromWishList(product, user)
 
         res.redirect(req.get('referer'));
     }

@@ -34,7 +34,8 @@ class WishListFunctions {
         else {
             message = "This product is already in your wish list"
             console.log(`${message}`)
-        }  
+        }
+        return message;
     }
 
     async removeFromWishList(product, user) {
@@ -51,6 +52,7 @@ class WishListFunctions {
 
         let message = `Successfully removed product ${delName} from your wish list`
         console.log(`${message}`)
+        return message;
     }
 
     async refreshWishList(user) {

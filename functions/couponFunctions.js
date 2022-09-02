@@ -44,7 +44,7 @@ class CouponFunctions {
         message = `Successfully created coupon ${code}`
         console.log(`${message}`)
 
-        return coupon;
+        return message;
         }
     }
 
@@ -68,6 +68,7 @@ class CouponFunctions {
             message = `Successfully deleted coupon ${delCode}`
             console.log(`${message}`)
         }
+        return message;
     }
 
     async updateCoupon(couponId, code, discount = 0) {
@@ -110,6 +111,7 @@ class CouponFunctions {
                 console.log(`${message}`)
             }
         }
+        return message;
     }
 
 }

@@ -49,6 +49,7 @@ class UsersFunctions {
                 console.log(`${message}`)
             }
         }
+        return message;
     }
 
     async deleteUser(userId) {
@@ -71,6 +72,7 @@ class UsersFunctions {
             message = `Successfully deleted user ${delEmail}`
             console.log(`${message}`)
         }
+        return message;
     }
 
     async updateUser(userId, email, password, adm = false) {
@@ -118,6 +120,7 @@ class UsersFunctions {
                 console.log(`${message}`)
             }
         }
+        return message;
     }
 
     async userLogin(email, password, req){
@@ -144,6 +147,7 @@ class UsersFunctions {
                 console.log(`${message}`)
             }
         }
+        return message;
     }
 
     async userLogout(req){
@@ -151,9 +155,10 @@ class UsersFunctions {
         const user = await this.findUserById(id)
         const email = user.email
 
-        req.session.destroy()
+        req.session.user = null
         let message = `User ${email} successfully logged out`
         console.log(`${message}`)
+        return message;
     }
 }
 

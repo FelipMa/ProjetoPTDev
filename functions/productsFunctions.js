@@ -45,7 +45,7 @@ class ProductsFunctions {
         message = `Successfully created product ${name}`
         console.log(`${message}`)
 
-        return product;
+        return message;
         }
     }
 
@@ -69,6 +69,7 @@ class ProductsFunctions {
             message = `Successfully deleted product ${delName}`
             console.log(`${message}`)
         }
+        return message;
     }
 
     async updateProduct(productId, name, price = 0, stock = 0) {
@@ -112,6 +113,7 @@ class ProductsFunctions {
                 console.log(`${message}`)
             }
         }
+        return message;
     }
 
     async buyProduct(productId, quantity = 1, discount = 0){
@@ -143,6 +145,7 @@ class ProductsFunctions {
                 console.log(`${message}`)
             }
         }
+        return message;
     }
 
     async addToCart(productId, req) {
@@ -172,6 +175,7 @@ class ProductsFunctions {
             message = "This product is already in cart"
             console.log(`${message}`)
         }
+        return message;
     }
 
     async refreshCart(req) {
@@ -205,6 +209,7 @@ class ProductsFunctions {
         req.session.cart.splice(productIndex, 1);
         message = `Successfully removed ${delName} from cart`
         console.log(`${message}`)
+        return message;
     }
 
     async buyAllCart(req) {
@@ -231,6 +236,7 @@ class ProductsFunctions {
             message = "Not enought stock of one or more products"
             console.log(`${message}`)
         }
+        return message;
     }
 }
 const productsFunctions = new ProductsFunctions
