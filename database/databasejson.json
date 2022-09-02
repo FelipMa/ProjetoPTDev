@@ -45,6 +45,13 @@
             "password": "1234",
             "adm": false,
             "wishList": []
+        },
+        {
+            "id": 3,
+            "email": "adm@adm",
+            "password": "123",
+            "adm": "on",
+            "wishList": []
         }
     ],
     "coupons": [

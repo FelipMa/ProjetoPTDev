@@ -11,14 +11,17 @@
             <div class="row">
                 <div class="mt-4 col-lg-4 col-md-6 col-sm-8 col-10">
                     <h4>Dados de Cadastro</h4>
+                    <!-- E-mail Atual -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-originalEmail">E-Mail Atual</span>
                         <input type="text" disabled class="form-control caseSensitiveFont" value=<%= userEmail %> aria-label="Username" aria-describedby="inputGroup-originalEmail" >
                     </div>
+                    <!-- ID da Conta -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-originalId">ID da Conta</span>
                         <input type="text" disabled class="form-control caseSensitiveFont" value=<%= userId %> aria-label="Username" aria-describedby="inputGroup-originalId" >
                     </div>
+                    <!-- Status de Administrador -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-admAccount">Status de Administrador</span>
                         <input type="text" disabled class="form-control caseSensitiveFont" value=<%= userAdm %> aria-label="Username" aria-describedby="inputGroup-admAccount" >
@@ -40,6 +43,13 @@
                             <span class="input-group-text" id="inputGroup-newPassword">Nova Senha</span>
                             <input type="password" name="password" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-newPassword" >
                         </div>
+                        <!-- Alterar Estado de Adm -->
+                        <% if (userAdm === "on") { %>
+                            <div class="my-3 form-check form-switch">
+                                <input type="checkbox" class="form-check-input" role="switch" id="admAccount" name="adm" placeholder="Enter adm">
+                                <label for="admAccount">Conta Administradora</label>
+                            </div>
+                        <% } %>
                         <!-- Grupo de Botões de "Atualizar" e "Apagar Conta" -->
                         <div class="d-flex justify-content-between">
                             <!-- Modal de Apagar Conta -->

@@ -5,21 +5,27 @@
             <h2 class="col mb-0">Crie uma Conta</h2>
         </div>
 
+        <!-- Corpo da seção de criação de conta -->
         <div class="row">
-            <div class="mt-4 col-lg-4 col-md-6 col-sm-8 col-10">
+            <div class="mt-4 col-lg-6 col-md-8 col-sm-10 col-12">
+                <!-- Form de criação de conta -->
                 <form method="POST" action="/create-user/register">
+                    <!-- Email de criação de conta -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="inputGroup-register-email">E-mail</span>
                         <input type="email" name="email" placeholder="email@exemplo.com" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-email" >
                     </div>
+                    <!-- Senha de criação de conta -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="inputGroup-register-password">Senha</span>
                         <input type="password" name="password" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-password" >
                     </div>
+                    <!-- Confirmar senha de criação de conta -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="inputGroup-register-passwordConfirm">Confirme a Senha</span>
-                        <input type="password" name="confirmpassword" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-passwordConfirm" >
+                        <input type="password" name="confirmPassword" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-passwordConfirm" >
                     </div>
+                    <!-- Se o usuário que está fazendo a conta for adm -->
                     <% if (userAdm === "on") { %>
                     <div class="form-check form-switch">
                         <input type="checkbox" class="form-check-input" role="switch" id="admAccount" name="adm" placeholder="Enter adm">
@@ -30,8 +36,6 @@
                 </form>
             </div>
         </div>
-
-
 
     </section>
 </div>
