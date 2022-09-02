@@ -1,22 +1,100 @@
-<div>
+<div class="idPage">
     <% if (req.session.user) { %>
 
-        <h1><%= `Olá ${userEmail}` %></h1>
-        <a href="/account/logout">Logout</a>
-
-        <h3>Seus dados:</h3>
-        <p><%= `Email: ${userEmail}` %></p>
-        <p><%= `ID: ${userId}` %></p>
-        <p><%= `Adm: ${userAdm}` %></p>
-        
-        
-        <form method="POST" action="/account/edit-user">
-            <input type="email" name="email" placeholder="Enter new email">
-            <input type="password" name="password" placeholder="Enter new password">
-            <button type="submit">Update (Necessário fazer login novamente)</button>
-        </form>
-
-        <a href="/account/delete">Deletar conta</a>
+        <section class="row ps-4">
+            <!-- Cabeçalho da seção de conta -->
+            <div class="row border-bottom border-dark align-items-center">
+                <h2 class="col mb-0">Sua Conta</h2>
+                <button type="button" class="btn btn-outline-secondary col-lg-2 col-sm-4 col-6 m-1" onclick="location.href='/create-user'">Criar Nova Conta</button>
+            </div>
+            <!-- Parte dos dados de cadastro -->
+            <div class="row">
+                <div class="mt-4 col-lg-4 col-md-6 col-sm-8 col-10">
+                    <h4>Dados de Cadastro</h4>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-originalEmail">E-Mail Atual</span>
+                        <input type="text" disabled class="form-control caseSensitiveFont" value=<%= userEmail %> aria-label="Username" aria-describedby="inputGroup-originalEmail" >
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-originalId">ID da Conta</span>
+                        <input type="text" disabled class="form-control caseSensitiveFont" value=<%= userId %> aria-label="Username" aria-describedby="inputGroup-originalId" >
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-admAccount">Status de Administrador</span>
+                        <input type="text" disabled class="form-control caseSensitiveFont" value=<%= userAdm %> aria-label="Username" aria-describedby="inputGroup-admAccount" >
+                    </div>
+                </div>
+            </div>
+            <!-- Parte de alteração de cadastro -->
+            <div class="row">
+                <div class="mt-4 col-lg-4 col-md-6 col-sm-8 col-10">
+                    <h4>Alterar Cadastro</h4>
+                    <form method="POST" action="/account/edit-user">
+                        <!-- Alterar E-Mail -->
+                        <div class="col input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-newEmail">Novo E-mail</span>
+                            <input type="email" name="email" placeholder="email@exemplo.com" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-newEmail" >
+                        </div>
+                        <!-- Alterar Senha -->
+                        <div class="col input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-newPassword">Nova Senha</span>
+                            <input type="password" name="password" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-newPassword" >
+                        </div>
+                        <!-- Grupo de Botões de "Atualizar" e "Apagar Conta" -->
+                        <div class="d-flex justify-content-between">
+                            <!-- Modal de Apagar Conta -->
+                            <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Cabeçalho do Modal -->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Apagar Conta</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <!-- Corpo do Modal -->
+                                        <div class="modal-body">
+                                            <h2>Tem certeza que deseja apagar sua conta permanentemente?</h2>
+                                            <h6 class="caseSensitiveFont">Não haverá forma de recuperar sua conta ou seus dados.</h6>
+                                        </div>
+                                        <!-- Rodapé do Modal -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-danger" onclick="location.href='/account/delete'">Apagar Conta</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Botão que ativa modal de Apagar Conta -->
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Apagar Conta</button>
+                            <!-- Modal de Atualizar Conta -->
+                            <div class="modal fade" id="updateAccountModal" tabindex="-1" aria-labelledby="updateAccountModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Cabeçalho do Modal -->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Atualizar dados cadastrais</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <!-- Corpo do Modal -->
+                                        <div class="modal-body">
+                                            <h2>Tem certeza que deseja alterar seus dados?</h2>
+                                            <h6 class="caseSensitiveFont">Você será desconectado de sua conta após atualizar os dados.</h6>
+                                        </div>
+                                        <!-- Rodapé do Modal -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-warning">Atualizar Dados</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Botão que ativa modal de Atualizar Conta -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateAccountModal">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
         
     <% } else { %>
 

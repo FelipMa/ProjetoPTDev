@@ -1,4 +1,4 @@
-<div id="registroPage">
+<div class="idPage">
     <% if (!req.session.user || userAdm != "on") { %>
 
         <h1>Acesso Restrito</h1>
@@ -6,10 +6,11 @@
     <% } else {%>
         <!-- Seção de Gestão de Produtos -->
         <section class="row ps-4" id="cadastrarProdutos">
+            <!-- Cabeçalho da seção de gestão de produtos -->
             <div class="row border-bottom border-dark align-items-center">
                 <h2 class="col mb-0">Gestão de Produtos</h2>
                 <!-- Botão ativador de modal de criação de produto -->
-                <button type="button" class="btn btn-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createProductModal">+ Cadastrar Novo</button>
+                <button type="button" class="btn btn-outline-success col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createProductModal">+ Cadastrar Novo</button>
                 <!-- Modal de Criação de Produtos -->
                     <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -54,13 +55,12 @@
                 </div>
                 <% products.forEach(function(product) {  %>
                     <!-- Linhas da listagem de produtos -->
-                    <div class="row p-4 pt-0">
+                    <div class="row p-4 pt-0 align-items-center">
                         <span class="col ps-0 caseSensitiveFont"><%= product.name %></span>
                         <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
                         <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
                         <!-- Botão ativador de modal de edição de produto -->
-                        <button type="button" data-bs-toggle="modal" data-bs-target= <%= `#editProductModal${product.id}` %>
-                        class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
+                        <button type="button" data-bs-toggle="modal" data-bs-target= <%= `#editProductModal${product.id}` %> class="col-1 btn btn-secondary ms-1 p-1 d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
@@ -108,8 +108,7 @@
                             </div>
                         </div>
                         <!-- Botão que deleta produto -->
-                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'"
-                            class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
+                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-1 d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                 <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                             </svg>
@@ -124,10 +123,11 @@
 
         <!-- Seção de Gestão de Cupons -->
         <section class="row ps-4" id="cadastrarCupons">
+            <!-- Cabeçalho da seção de gestão de cupons -->
             <div class="row border-bottom border-dark align-items-center">
                 <h2 class="col mb-0">Gestão de Cupons</h2>
                 <!-- Botão ativador de modal de criação de cupom -->
-                <button type="button" class="btn btn-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createCouponModal">+ Cadastrar Novo</button>
+                <button type="button" class="btn btn-outline-success col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createCouponModal">+ Cadastrar Novo</button>
                 <!-- Modal de Criação de Cupons -->
                 <div class="modal fade" id="createCouponModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -159,24 +159,24 @@
             </div>
 
             <% if (coupons.length) { %>
-                    <div class="row mb-0 pb-0 pt-4 px-4">
-                        <h5 class="col ps-0">Código</h5>
-                        <h5 class="col ps-0">Desconto</h5>
-                        <div class="col-2 ms-2"></div>
-                    </div>
-                    <% coupons.forEach(function(coupon) {  %>
-                        <!-- Linhas da listagem de cupons -->
-                        <div class="row p-4 pt-0">
-                            <span class="col ps-0 caseSensitiveFont"><%= coupon.code %></span>
-                            <span class="col ps-0 caseSensitiveFont">R$ <%= coupon.discount %>,00</span>
-                            <!-- Botão ativador de modal de edição de cupom -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target=<%= `#editCouponModal${coupon.id}` %> class="col-1 btn btn-secondary ms-1 p-0 d-flex justify-content-center align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                </svg>
-                            </button>
-                            <!-- Modal de Edição de Cupons -->
-                            <div class="modal fade" id=<%= `editCouponModal${coupon.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="row mb-0 pb-0 pt-4 px-4">
+                    <h5 class="col ps-0">Código</h5>
+                    <h5 class="col ps-0">Desconto</h5>
+                    <div class="col-2 ms-2"></div>
+                </div>
+                <% coupons.forEach(function(coupon) {  %>
+                <!-- Linhas da listagem de cupons -->
+                <div class="row p-4 pt-0 align-items-center">
+                    <span class="col ps-0 caseSensitiveFont"><%= coupon.code %></span>
+                    <span class="col ps-0 caseSensitiveFont">R$ <%= coupon.discount %>,00</span>
+                    <!-- Botão ativador de modal de edição de cupom -->
+                    <button type="button" data-bs-toggle="modal" data-bs-target=<%= `#editCouponModal${coupon.id}` %> class="col-1 btn btn-secondary ms-1 p-1 d-flex justify-content-center align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                    </button>
+                    <!-- Modal de Edição de Cupons -->
+                    <div class="modal fade" id=<%= `editCouponModal${coupon.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -209,16 +209,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Botão que deleta cupom -->
-                            <button type="button" onclick="location.href='<%= `/manage-products/edit-coupon/${coupon.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-0 d-flex justify-content-center align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                </svg>
-                            </button>
-                        </div>
-                        
-                    <% }); %>
+                    </div>
+                    <!-- Botão que deleta cupom -->
+                    <button type="button" onclick="location.href='<%= `/manage-products/edit-coupon/${coupon.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-1 d-flex justify-content-center align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>
+                    </button>
+                </div>
+                <% }); %>
             <% } else {%>
                 <h3>Não há cupons cadastrados</h3>
             <% } %>

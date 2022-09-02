@@ -2,7 +2,7 @@
     "products": [
         {
             "id": 5,
-            "name": "Tenis Doido 1",
+            "name": "Tenis Doido 11",
             "price": 10,
             "stock": 75
         },
@@ -23,6 +23,12 @@
             "name": "Ultimo 2",
             "price": 999,
             "stock": 12
+        },
+        {
+            "id": 11,
+            "name": "ass",
+            "price": 40,
+            "stock": 8
         }
     ],
     "users": [

@@ -20,6 +20,12 @@ footer {
     font-family: "Montserrat";
 }
 
+.idPage {
+    max-width: 100%;
+    margin-top: 2rem;
+    font-family: "Bebas Neue"
+}
+
 .testBorder {
     border: 1px solid red;
 }
@@ -89,9 +95,3 @@ footer {
 }
 
 /* registroPage */
-
-#registroPage {
-    max-width: 100%;
-    font-family: "Bebas Neue";
-    margin-top: 2rem;
-}
