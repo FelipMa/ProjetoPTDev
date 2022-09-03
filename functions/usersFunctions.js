@@ -137,7 +137,8 @@ class UsersFunctions {
             if (existUser.password === password) {
                 
                 req.session.user = {
-                    id: existUser.id
+                    id: existUser.id,
+                    adm: existUser.adm
                 }
                 message = `User ${email} successfully logged in`
                 console.log(`${message}`)

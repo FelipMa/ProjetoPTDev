@@ -63,7 +63,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Iniciar Sessão</button>
                         </form>
-                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider mt-0"></div>
                         <!-- Link para Registro -->
                         <a class="dropdown-item" href="/create-user">Não tem conta? Cadastre-se aqui!</a>
                         <% } %>
@@ -95,18 +95,20 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbarItems" aria-controls="myNavbarItems" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Dropdown Principal -->
+                <!-- Itens da NavBar que se transformam no Dropdown Principal -->
                 <div class="collapse navbar-collapse" id="myNavbarItems">
                     <ul class="navbar-nav" id="collapsibleItems">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/about">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/list-products">Produtos</a>
+                            <a class="nav-link" href="/list-products">Loja</a>
                         </li>
+                        <% if (req.session.user && req.session.user.adm === "on") { %>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage-products">Registro</a>
+                            <a class="nav-link" href="/manage-products">Gerenciar</a>
                         </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>

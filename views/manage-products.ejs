@@ -1,7 +1,9 @@
 <div class="idPage">
     <% if (!req.session.user || userAdm != "on") { %>
 
-        <h1>Acesso Restrito</h1>
+        <h1 class="ps-4 border-bottom border-dark">Acesso Restrito</h1>
+        <h4 class="ps-4 my-4 caseSensitiveFont">Faça login como administrador para ter acesso a gestão de produtos e cupons.</h4>
+        <button type="button" class="m-4 btn btn-outline-primary" onclick="location.href='<%= `/account` %>'">Minha Conta</button>
 
     <% } else {%>
         <!-- Seção de Gestão de Produtos -->
@@ -54,19 +56,19 @@
                     <div class="col-2 ms-2"></div>
                 </div>
                 <% products.forEach(function(product) {  %>
-                    <!-- Linhas da listagem de produtos -->
-                    <div class="row p-4 pt-0 align-items-center">
-                        <span class="col ps-0 caseSensitiveFont"><%= product.name %></span>
-                        <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
-                        <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
-                        <!-- Botão ativador de modal de edição de produto -->
-                        <button type="button" data-bs-toggle="modal" data-bs-target= <%= `#editProductModal${product.id}` %> class="col-1 btn btn-secondary ms-1 p-1 d-flex justify-content-center align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                <!-- Linhas da listagem de produtos -->
+                <div class="row p-4 pt-0 align-items-center">
+                    <span class="col ps-0 caseSensitiveFont"><%= product.name %></span>
+                    <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
+                    <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
+                    <!-- Botão ativador de modal de edição de produto -->
+                    <button type="button" data-bs-toggle="modal" data-bs-target= <%= `#editProductModal${product.id}` %> class="col-1 btn btn-secondary ms-1 p-1 d-flex justify-content-center align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                            </svg>
-                        </button>
-                        <!-- Modal de Edição de Produtos -->
-                        <div class="modal fade" id=<%= `editProductModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        </svg>
+                    </button>
+                    <!-- Modal de Edição de Produtos -->
+                    <div class="modal fade" id=<%= `editProductModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -80,7 +82,11 @@
                                                 <span class="input-group-text" id="inputGroup-originalProduct">Produto Atual</span>
                                                 <input type="text" form="NaoExiste" readonly name="code" value="<%= product.name %>" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
                                                 <input type="text" form="NaoExiste" readonly name="code" value="R$ <%= product.price %>,00" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
-                                                <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> item(ns)" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                                <% if (product.stock == 1) { %>
+                                                    <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> item" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                                <% } else {%>
+                                                    <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> itens" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                                <% }; %>
                                             </div>
                                             <!-- Input group para o novo nome -->
                                             <div class="input-group mb-3">
@@ -106,18 +112,18 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Botão que deleta produto -->
-                        <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-1 d-flex justify-content-center align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                            </svg>
-                        </button>
-
                     </div>
+                    <!-- Botão que deleta produto -->
+                    <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-1 d-flex justify-content-center align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>
+                    </button>
+
+                </div>
                 <% }); %>
             <% } else {%>
-                <h3>Não há produtos disponíveis</h3>
+                <h4 class="caseSensitiveFont py-4">Não há produtos disponíveis.</h4>
             <% } %>
         </section>
 
@@ -219,7 +225,7 @@
                 </div>
                 <% }); %>
             <% } else {%>
-                <h3>Não há cupons cadastrados</h3>
+                <h4 class="caseSensitiveFont py-4">Não há cupons cadastrados.</h4>
             <% } %>
         </section>
     <% } %>

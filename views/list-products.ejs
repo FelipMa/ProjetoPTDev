@@ -1,40 +1,97 @@
-<div>
+<div class="idPage">
 
-    <h1>Lista de produtos</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-            </tr>
-        </thead>
-        <tbody>
+    <section class="row ps-4">
+
+        <div class="row border-bottom border-dark align-items-center mb-4">
+            <h2 class="col mb-0">Nossa Loja</h2>
+        </div>
+
+        <!-- Linhas da listagem de produtos -->
+        <div class="row d-flex justify-content-around">
+            <!-- Card dos Produtos -->
             <% products.forEach(function(product) { %>
-            <tr>
-                <td><%= product.name %></td>
-                <td><%= product.price %></td>
-                <td><%= product.stock %></td>
-                <td><% if (product.stock <= 10) { %> (Baixo Estoque) <% }; %></td>
-                <td>
-                    <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
-                        <input type="text" name="quantity" placeholder="Enter Quantity">
-                        <input type="text" name="code" placeholder="Enter Coupon Code">
-                        <button type="submit">Buy</button>
-                    </form>
-                </td>
-                <td>
-                    <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
-                </td>
-                <td>
-                    <a href=<%= `/wish-list/add-to-wish-list/${product.id}` %>>Adicionar à lista de desejos</a>
-                </td>
-                <td>
-                    <a href=<%= `/cart/add-to-cart/${product.id}` %>>Adicionar ao carrinho</a>
-                </td>
-            </tr>
+            <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-8 col-10 m-2">
+                <!-- Imagem Principal do Produto -->
+                <img src="img/titanLogo.png" class="card-img-top">
+                <!-- Nome e Descrição do Produto -->
+                <div class="card-body">
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <p class="card-text caseSensitiveFont">Um Produto de Qualidade Padrão TITAN Outifits.</p>
+                </div>
+                <!-- Informações do Produto -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">R$ <%= product.price %>,00</li>
+                    <% if (product.stock == 1) { %>
+                        <li class="list-group-item"><%= product.stock %> Disponível</li>
+                    <% } else {%>
+                        <li class="list-group-item"><%= product.stock %> Disponíveis</li>
+                    <% }; %>
+                    <% if (product.stock <= 10) { %>
+                        <li class="list-group-item text-danger">Baixo Estoque!</li>
+                    <% }; %>
+                </ul>
+                <!-- Botões de interação com o produto -->
+                <div class="card-body d-flex justify-content-around align-items-center">
+                    <!-- Botão que ativa modal de compra instantânea -->
+                    <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target=<%= `#instaBuyProductModal${product.id}` %>>Comprar Agora</button>
+                    <!-- Modal de compra instantânea -->
+                    <div class="modal fade" id=<%= `instaBuyProductModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Comprar <%= product.name %></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" id=<%= `instaBuyProduct${product.id}` %> action=<%= `/list-products/buy-product/${product.id}` %>>
+                                        <!-- Info do Produto -->
+                                        <div class="row mb-3 mx-2 d-flex justify-content-around align-items-center">
+                                            <span class="col ps-0 caseSensitiveFont lead"><%= product.name %></span>
+                                            <span class="col ps-0 caseSensitiveFont lead">R$ <%= product.price %>,00</span>
+                                            <% if (product.stock == 1) { %>
+                                                <span class="col ps-0 caseSensitiveFont lead"><%= product.stock %> disponível</span>
+                                            <% } else {%>
+                                                <span class="col ps-0 caseSensitiveFont lead"><%= product.stock %> disponíveis</span>
+                                            <% }; %>
+                                        </div>
+                                        <!-- Linhas da entrada da quantidade e do cupom -->
+                                        <div class="row">
+                                            <div class="col input-group mb-3">
+                                                <span class="input-group-text" id="inputGroup-instaBuyProduct-qtd">Quantidade</span>
+                                                <input required type="number" name="quantity" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-qtd">
+                                            </div>
+                                            <div class="col input-group mb-3">
+                                                <span class="input-group-text" id="inputGroup-instaBuyProduct-code">Cupom</span>
+                                                <input type="text" name="code" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-code">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" form=<%= `instaBuyProduct${product.id}` %> class="btn btn-success">Comprar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botão que adiciona na lista de desejos -->
+                    <button type="button" class="btn btn-outline-info m-1" onclick="location.href='<%= `/wish-list/add-to-wish-list/${product.id}` %>'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                    </button>
+                    <!-- Botão que adiciona no carrinho -->
+                    <button type="button" class="btn btn-outline-info m-1" onclick="location.href='<%= `/cart/add-to-cart/${product.id}` %>'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
             <% }); %>
-        </tbody>
-    </table>
+        </div>
+
+    </section>
 
 </div>

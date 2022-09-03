@@ -1,14 +1,58 @@
-<div>
+<div class="idPage">
     <% if (req.session.cart) { %>
-
-        <h1>Carrinho</h1>
 
         <% if (req.session.cart.length === 0) { %>
 
-            <p>Não há produtos aqui por enquanto</p>
+            <h1 class="ps-4 border-bottom border-dark">Carrinho</h1>
+            <h4 class="ps-4 my-4 caseSensitiveFont">Seu carrinho está vazio! Visite nossa loja para adicionar produtos.</h4>
+            <button type="button" class="ms-4 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
 
         <% } else { %>
+            <!--
+            <section class="row ps-4">
 
+                <div class="row border-bottom border-dark align-items-center">
+                    <h2 class="col mb-0">Carrinho</h2>
+                </div>
+
+                <div class="row border-bottom border-dark">
+                    <div class="row mb-0 pb-0 pt-4 px-4">
+                        <h5 class="col ps-0">Nome</h5>
+                        <h5 class="col ps-0">Preço</h5>
+                        <h5 class="col ps-0">Estoque</h5>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                    </div>
+
+                    <% req.session.cart.forEach(function(product) { %>
+                    <div class="row p-4 py-0 align-items-center border-top">
+                        <span class="col ps-0 caseSensitiveFont"><%= product.name %></span>
+                        <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
+                        <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
+                        <form class="col mt-3" method="POST" id=<%= `singleBuyProduct${product.id}` %> action=<%= `/list-products/buy-product/${product.id}` %>>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-instaBuyProduct-qtd">Quantidade</span>
+                                <input required type="number" name="quantity" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-qtd">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-instaBuyProduct-code">Cupom</span>
+                                <input type="text" name="code" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-code">
+                            </div>
+                        </form>
+                        <div class="col">
+                            <button type="submit" form=<%= `singleBuyProducts${product.id}` %> class="btn btn-outline-success">Comprar</button>
+                            <div>
+                                <a class="col" href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
+                                <a class="col" href=<%= `/cart/remove-from-cart/${product.id}` %>>Remover do carrinho</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+
+
+            </section> 
+            -->
             <table>
                 <thead>
                     <tr>

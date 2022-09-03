@@ -4,7 +4,7 @@
         <section class="row ps-4">
             <!-- Cabeçalho da seção de conta -->
             <div class="row border-bottom border-dark align-items-center">
-                <h2 class="col mb-0">Sua Conta</h2>
+                <h2 class="col mb-0">Minha Conta</h2>
                 <button type="button" class="btn btn-outline-secondary col-lg-2 col-sm-4 col-6 m-1" onclick="location.href='/create-user'">Criar Nova Conta</button>
             </div>
             <!-- Parte dos dados de cadastro -->
@@ -108,7 +108,10 @@
         
     <% } else { %>
 
-        <h1>Necessário iniciar sessão</h1>
+        <h1 class="ps-4 border-bottom border-dark">Minha Conta</h1>
+        <h4 class="ps-4 my-4 caseSensitiveFont">Faça login em sua conta para acessar e alterar seus dados.</h4>
+        <span class="ps-4 caseSensitiveFont">Não tem conta?</span>
+        <button type="button" class="mx-2 my-4 btn btn-outline-primary" onclick="location.href='<%= `/create-user` %>'">Criar Conta</button>
 
     <% } %>
 </div>

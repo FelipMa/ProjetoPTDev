@@ -20,6 +20,10 @@ footer {
     font-family: "Montserrat";
 }
 
+.idFont {
+    font-family: "Bebas Neue" 
+}
+
 .idPage {
     max-width: 100%;
     margin-top: 2rem;
@@ -28,6 +32,10 @@ footer {
 
 .testBorder {
     border: 1px solid red;
+}
+
+#testandooo {
+    width: 100%;
 }
 
 /* Navbar */
@@ -60,10 +68,6 @@ footer {
     background-color: #E2E2E2;
     padding-left: 20px;
     padding-right: 20px;
-}
-
-.item-dropdown-user {
-    font-family: "Bebas Neue";
 }
 
 .encaixe-de-imagem {

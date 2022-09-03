@@ -1,43 +1,56 @@
 {
     "products": [
         {
-            "id": 5,
-            "name": "Tenis Doido 11",
-            "price": 10,
-            "stock": 75
+            "id": 1,
+            "name": "Tênis Air Jordan",
+            "price": 849,
+            "stock": 5
         },
         {
-            "id": 8,
-            "name": "eles",
-            "price": 33,
-            "stock": 1
+            "id": 2,
+            "name": "Camiseta Básica",
+            "price": 129,
+            "stock": 21
         },
         {
-            "id": 9,
-            "name": "Ultimo",
-            "price": 22,
-            "stock": 6
-        },
-        {
-            "id": 10,
-            "name": "Ultimo 2",
-            "price": 999,
-            "stock": 12
-        },
-        {
-            "id": 11,
-            "name": "ass",
-            "price": 40,
+            "id": 3,
+            "name": "Calça Jeans Skinny",
+            "price": 159,
             "stock": 8
+        },
+        {
+            "id": 4,
+            "name": "Meia Longa (6u)",
+            "price": 49,
+            "stock": 25
+        },
+        {
+            "id": 5,
+            "name": "Boné",
+            "price": 69,
+            "stock": 2
+        },
+        {
+            "id": 6,
+            "name": "Óculos Rayban",
+            "price": 799,
+            "stock": 1
         }
     ],
     "users": [
         {
-            "id": 1,
-            "email": "teste@123",
+            "id": 3,
+            "email": "adm@adm",
             "password": "123",
             "adm": "on",
-            "wishList": []
+            "wishList": [
+                {
+                    "id": 1,
+                    "name": "Tênis Air Jordan",
+                    "price": 849,
+                    "stock": 5
+                }
+            ]
         },
         {
             "id": 2,
@@ -51,49 +64,38 @@
             "email": "adm@adm",
             "password": "123",
             "adm": "on",
+            "wishList": [
+                {
+                    "id": 1,
+                    "name": "Tênis Air Jordan",
+                    "price": 849,
+                    "stock": 5
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "email": "testando@aqui",
+            "password": "aaa",
+            "adm": false,
             "wishList": []
         }
     ],
     "coupons": [
         {
-            "id": 5,
-            "code": "O Primeiro 10",
-            "discount": 3
-        },
-        {
-            "id": 7,
-            "code": "sss",
-            "discount": 333
-        },
-        {
-            "id": 8,
-            "code": "ultimo",
-            "discount": 33
-        },
-        {
-            "id": 9,
-            "code": "1a2b3c",
+            "id": 1,
+            "code": "promocaoverao",
             "discount": 15
         },
         {
-            "id": 10,
-            "code": "1a2B3c4D",
-            "discount": 150
+            "id": 2,
+            "code": "especial100",
+            "discount": 100
         },
         {
-            "id": 11,
-            "code": "Sinal-10",
-            "discount": 1200
-        },
-        {
-            "id": 13,
-            "code": "promocaosexta",
-            "discount": 20
-        },
-        {
-            "id": 14,
-            "code": "teste",
-            "discount": 12
+            "id": 3,
+            "code": "fidelidade",
+            "discount": 30
         }
     ]
 }
