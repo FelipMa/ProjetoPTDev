@@ -7,7 +7,7 @@
             <h4 class="ps-4 my-4 caseSensitiveFont">Seu carrinho está vazio! Visite nossa loja para adicionar produtos.</h4>
             <button type="button" class="ms-4 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
 
-        <% } else { %>
+        <% } else { let totalPrice = 0 %>
             <!-- Cabeçalho -->
             <div class="row ps-4 border-bottom border-dark align-items-center">
                 <h2 class="col mb-0 pe-0">Carrinho</h2>
@@ -31,7 +31,7 @@
                         </div>
 
                         <!-- Linhas de produtos -->
-                        <% req.session.cart.forEach(function(product) { %>
+                        <% req.session.cart.forEach(function(product) { totalPrice += product.price %>
                         <div class="row p-4 py-0 align-items-center border-top">
                             <span class="col-sm-4 col-4 ps-0 caseSensitiveFont"><%= product.name %></span>
                             <span class="col-sm-3 col-2 ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
@@ -118,7 +118,7 @@
                         <h3 class="col mt-2">Total</h2>
                     </div>
                     <div class="row mb-0 p-0 pb-0 pt-4">
-                        <h5 class="col">Valor Total: R$ 0,00</h5>
+                        <h5 class="col">Valor Total: R$ <%= totalPrice %>,00 </h5>
                     </div>
                     <div class="row p-4 py-0 align-items-center border-top">
                         <button type="button" class="m-1 btn btn-success" onclick="location.href='/cart/buy-all-cart'">Comprar tudo</button>
@@ -131,9 +131,9 @@
 
     <% } else { %>
 
-        <h1>Carrinho</h1>
-        
-        <p>Não há produtos aqui por enquanto</p>
+        <h1 class="ps-4 border-bottom border-dark">Carrinho</h1>
+        <h4 class="ps-4 my-4 caseSensitiveFont">Seu carrinho está vazio! Visite nossa loja para adicionar produtos.</h4>
+        <button type="button" class="ms-4 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
 
     <% } %>
 </div>

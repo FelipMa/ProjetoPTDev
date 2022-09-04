@@ -39,26 +39,6 @@
     ],
     "users": [
         {
-            "id": 3,
-            "email": "adm@adm",
-            "password": "123",
-            "adm": "on",
-            "wishList": [
-                {
-                    "id": 1,
-                    "name": "Tênis Air Jordan",
-                    "price": 859,
-                    "stock": 5
-                },
-                {
-                    "id": 3,
-                    "name": "Calça Jeans Skinny",
-                    "price": 159,
-                    "stock": 8
-                }
-            ]
-        },
-        {
             "id": 2,
             "email": "teste@1234",
             "password": "1234",
@@ -66,24 +46,17 @@
             "wishList": []
         },
         {
-            "id": 3,
-            "email": "adm@adm",
-            "password": "123",
-            "adm": "on",
-            "wishList": [
-                {
-                    "id": 1,
-                    "name": "Tênis Air Jordan",
-                    "price": 849,
-                    "stock": 5
-                }
-            ]
-        },
-        {
             "id": 4,
             "email": "testando@aqui",
             "password": "aaa",
             "adm": false,
+            "wishList": []
+        },
+        {
+            "id": 5,
+            "email": "teste@123",
+            "password": "123",
+            "adm": "on",
             "wishList": []
         }
     ],
