@@ -13,7 +13,7 @@
                 <h2 class="col mb-0 pe-0">Carrinho</h2>
             </div>
             <div class="row me-0 pe-0">
-                
+
                 <!-- Seção dos itens do carrinho -->
                 <section class="col-md-8 me-0 pb-4 pe-0 ps-4 border-bottom border-dark">
 
@@ -131,9 +131,9 @@
 
     <% } else { %>
 
-        <h1>Carrinho</h1>
-        
-        <p>Não há produtos aqui por enquanto</p>
+            <h1 class="ps-4 border-bottom border-dark">Carrinho</h1>
+            <h4 class="ps-4 my-4 caseSensitiveFont">Seu carrinho está vazio! Visite nossa loja para adicionar produtos.</h4>
+            <button type="button" class="ms-4 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
 
     <% } %>
 </div>

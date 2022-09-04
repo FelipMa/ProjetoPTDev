@@ -43,20 +43,7 @@
             "email": "adm@adm",
             "password": "123",
             "adm": "on",
-            "wishList": [
-                {
-                    "id": 1,
-                    "name": "Tênis Air Jordan",
-                    "price": 859,
-                    "stock": 5
-                },
-                {
-                    "id": 3,
-                    "name": "Calça Jeans Skinny",
-                    "price": 159,
-                    "stock": 8
-                }
-            ]
+            "wishList": []
         },
         {
             "id": 2,
