@@ -8,83 +8,124 @@
             <button type="button" class="ms-4 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
 
         <% } else { %>
-            <!--
-            <section class="row ps-4">
+            <!-- Cabeçalho -->
+            <div class="row ps-4 border-bottom border-dark align-items-center">
+                <h2 class="col mb-0 pe-0">Carrinho</h2>
+            </div>
+            <div class="row me-0 pe-0">
+                
+                <!-- Seção dos itens do carrinho -->
+                <section class="col-md-8 me-0 pb-4 pe-0 ps-4 border-bottom border-dark">
 
-                <div class="row border-bottom border-dark align-items-center">
-                    <h2 class="col mb-0">Carrinho</h2>
-                </div>
-
-                <div class="row border-bottom border-dark">
-                    <div class="row mb-0 pb-0 pt-4 px-4">
-                        <h5 class="col ps-0">Nome</h5>
-                        <h5 class="col ps-0">Preço</h5>
-                        <h5 class="col ps-0">Estoque</h5>
-                        <div class="col"></div>
-                        <div class="col"></div>
+                    <div class="row align-items-center">
+                        <h3 class="col mt-2">Itens</h2>
                     </div>
 
-                    <% req.session.cart.forEach(function(product) { %>
-                    <div class="row p-4 py-0 align-items-center border-top">
-                        <span class="col ps-0 caseSensitiveFont"><%= product.name %></span>
-                        <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
-                        <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
-                        <form class="col mt-3" method="POST" id=<%= `singleBuyProduct${product.id}` %> action=<%= `/list-products/buy-product/${product.id}` %>>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-instaBuyProduct-qtd">Quantidade</span>
-                                <input required type="number" name="quantity" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-qtd">
+                    <div class="row">
+                        <!-- Categorias dos itens -->
+                        <div class="row mb-0 pb-0 pt-4 px-4">
+                            <h5 class="col-sm-4 col-4 ps-0">Nome</h5>
+                            <h5 class="col-sm-3 col-2 ps-0">Preço</h5>
+                            <h5 class="col-sm-3 col-2 ps-0">Estoque</h5>
+                            <div class="col-sm-2 col-4"></div>
+                        </div>
+
+                        <!-- Linhas de produtos -->
+                        <% req.session.cart.forEach(function(product) { %>
+                        <div class="row p-4 py-0 align-items-center border-top">
+                            <span class="col-sm-4 col-4 ps-0 caseSensitiveFont"><%= product.name %></span>
+                            <span class="col-sm-3 col-2 ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
+                            <span class="col-sm-3 col-2 ps-0 caseSensitiveFont"><%= product.stock %></span>
+                            
+                            <!-- Grupo de botões de interação com o produto individual -->
+                            <div class="col-sm-2 col-4 p-0 d-flex justify-content-between">
+
+                                <!-- Botão que ativa modal de compra individual -->
+                                <button type="button" class="m-1 btn btn-outline-success" data-bs-toggle="modal" data-bs-target=<%= `#instaBuyThisModal${product.id}` %>>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                                    </svg>
+                                </button>
+
+                                <!-- Botão que retira o produto do carrinho -->
+                                <button type="button" class="m-1 btn btn-outline-danger" onclick="location.href='<%=`/cart/remove-from-cart/${product.id}` %>'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-x" viewBox="0 0 16 16">
+                                        <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"/>
+                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                    </svg>
+                                </button>
+
                             </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-instaBuyProduct-code">Cupom</span>
-                                <input type="text" name="code" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-code">
-                            </div>
-                        </form>
-                        <div class="col">
-                            <button type="submit" form=<%= `singleBuyProducts${product.id}` %> class="btn btn-outline-success">Comprar</button>
-                            <div>
-                                <a class="col" href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
-                                <a class="col" href=<%= `/cart/remove-from-cart/${product.id}` %>>Remover do carrinho</a>
+                            
+                            <!-- Modal de compra individual -->
+                            <div class="modal fade" id=<%= `instaBuyThisModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Cabeçalho do Modal -->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><%= `Comprar ${product.name}` %></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <!-- Corpo do Modal -->
+                                        <div class="modal-body">
+                                            <!-- Forms de compra individual do produto -->
+                                            <form class="col mt-3" method="POST" id=<%= `singleBuyProduct${product.id}` %> action=<%= `/list-products/buy-product/${product.id}` %>>
+                                                <!-- Info do Produto -->
+                                                <div class="row mb-3 mx-2 d-flex justify-content-around align-items-center">
+                                                    <span class="col ps-0 caseSensitiveFont lead"><%= product.name %></span>
+                                                    <span class="col ps-0 caseSensitiveFont lead">R$ <%= product.price %>,00</span>
+                                                    <% if (product.stock == 1) { %>
+                                                        <span class="col ps-0 caseSensitiveFont lead"><%= product.stock %> disponível</span>
+                                                    <% } else {%>
+                                                        <span class="col ps-0 caseSensitiveFont lead"><%= product.stock %> disponíveis</span>
+                                                    <% }; %>
+                                                </div>
+                                                <!-- Linhas da entrada da quantidade e do cupom -->
+                                                <div class="row">
+                                                    <div class="col input-group mb-3">
+                                                        <span class="input-group-text" id="inputGroup-instaBuyProduct-qtd">Quantidade</span>
+                                                        <input required type="number" name="quantity" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-qtd">
+                                                    </div>
+                                                    <div class="col input-group mb-3">
+                                                        <span class="input-group-text" id="inputGroup-instaBuyProduct-code">Cupom</span>
+                                                        <input type="text" name="code" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-code">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- Rodapé do Modal -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" form=<%= `singleBuyProduct${product.id}` %> class="btn btn-success">Comprar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <% }); %>
                     </div>
-                    <% }); %>
-                </div>
 
+                </section> 
 
-            </section> 
-            -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% req.session.cart.forEach(function(product) { %>
-                    <tr>
-                        <td><%= product.name %></td>
-                        <td><%= product.price %></td>
-                        <td><%= product.stock %></td>
-                        <td><% if (product.stock <= 10) { %> (Baixo Estoque) <% }; %></td>
-                        <td>
-                            <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
-                                <input type="text" name="quantity" placeholder="Enter Quantity">
-                                <input type="text" name="code" placeholder="Enter Coupon Code">
-                                <button type="submit">Buy</button>
-                            </form>
-                        </td>
-                        <td>
-                            <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
-                            <a href=<%= `/cart/remove-from-cart/${product.id}` %>>Remover do carrinho</a>
-                        </td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        
-            <a href="/cart/buy-all-cart">Comprar todo o carrinho (1 unidade de cada)</a>
+                <!-- Seção de Compra do Carrinho -->
+                <section class="col ps-3 pb-4 border-bottom border-start border-dark">
+
+                    <div class="row align-items-center">
+                        <h3 class="col mt-2">Total</h2>
+                    </div>
+                    <div class="row mb-0 p-0 pb-0 pt-4">
+                        <h5 class="col">Valor Total: R$ 0,00</h5>
+                    </div>
+                    <div class="row p-4 py-0 align-items-center border-top">
+                        <button type="button" class="m-1 btn btn-success" onclick="location.href='/cart/buy-all-cart'">Comprar tudo</button>
+                    </div>
+
+                </section>
+            </div>
 
         <% } %>
 

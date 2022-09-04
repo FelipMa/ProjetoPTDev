@@ -3,14 +3,14 @@
         {
             "id": 1,
             "name": "Tênis Air Jordan",
-            "price": 849,
+            "price": 859,
             "stock": 5
         },
         {
             "id": 2,
             "name": "Camiseta Básica",
             "price": 129,
-            "stock": 21
+            "stock": 9
         },
         {
             "id": 3,
@@ -47,8 +47,14 @@
                 {
                     "id": 1,
                     "name": "Tênis Air Jordan",
-                    "price": 849,
+                    "price": 859,
                     "stock": 5
+                },
+                {
+                    "id": 3,
+                    "name": "Calça Jeans Skinny",
+                    "price": 159,
+                    "stock": 8
                 }
             ]
         },
