@@ -24,7 +24,7 @@ app.listen(port, () => console.log(`App listening on port ${port}!`));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('layout', 'main');
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public/'));
 
 app.dynamicHelpers({
     req: function(req, res){

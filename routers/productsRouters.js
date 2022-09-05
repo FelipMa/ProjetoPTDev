@@ -30,18 +30,22 @@ router.post("/list-products/buy-product/:productId", function(req, res){
     controller.buyProduct(req, res)
 })
 
-router.get("/list-products/see-product/:productId", function(req, res){
+router.get("/list-products/see-product", function(req, res){
     controller.seeProduct(req, res)
 })
+
 router.get("/cart/add-to-cart/:productId", function(req, res){
     controller.addToCart(req, res)
 })
+
 router.get("/cart", function(req, res){
     controller.getCart(req, res)
 })
+
 router.get("/cart/remove-from-cart/:productId", function(req, res){
     controller.removeFromCart(req, res)
 })
+
 router.get("/cart/buy-all-cart", function(req, res){
     controller.buyAllCart(req, res)
 })

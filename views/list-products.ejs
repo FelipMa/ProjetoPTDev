@@ -20,7 +20,7 @@
                 </div>
                 <!-- Informações do Produto -->
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href=<%= `/list-products/see-product/${product.id}` %>>Página do Produto</a></li>
+                    <li class="list-group-item"><a href=<%= `/list-products/see-product/?id=${product.id}` %>>Página do Produto</a></li>
                     <li class="list-group-item">R$ <%= product.price %>,00</li>
                     <% if (product.stock == 1) { %>
                         <li class="list-group-item"><%= product.stock %> Disponível</li>

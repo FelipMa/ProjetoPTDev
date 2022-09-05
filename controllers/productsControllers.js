@@ -88,7 +88,7 @@ class ProductController {
     }
 
     async seeProduct (req, res) {
-        const productId = await req.params.productId
+        const productId = await req.query.id
 
         const productIdInt = parseInt(productId)
 

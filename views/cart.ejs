@@ -33,7 +33,7 @@
                         <!-- Linhas de produtos -->
                         <% req.session.cart.forEach(function(product) { totalPrice += product.price %>
                         <div class="row p-4 py-0 align-items-center border-top">
-                            <span class="col-sm-4 col-4 ps-0 caseSensitiveFont"><a href=<%= `/list-products/see-product/${product.id}` %>><%= product.name %></a></span>
+                            <span class="col-sm-4 col-4 ps-0 caseSensitiveFont"><a href=<%= `/list-products/see-product/?id=${product.id}` %>><%= product.name %></a></span>
                             <span class="col-sm-3 col-2 ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
                             <span class="col-sm-3 col-2 ps-0 caseSensitiveFont d-flex justify-content-center"><%= product.stock %></span>
                             

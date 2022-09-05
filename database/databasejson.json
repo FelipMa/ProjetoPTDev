@@ -51,16 +51,16 @@
                     "stock": 4
                 },
                 {
-                    "id": 2,
-                    "name": "Camiseta Básica",
-                    "price": 129,
-                    "stock": 8
-                },
-                {
                     "id": 5,
                     "name": "Boné",
                     "price": 69,
                     "stock": 1
+                },
+                {
+                    "id": 3,
+                    "name": "Calça Jeans Skinny",
+                    "price": 159,
+                    "stock": 7
                 }
             ]
         },

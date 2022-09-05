@@ -38,11 +38,11 @@ class WishListFunctions {
         return message;
     }
 
-    async removeFromWishList(product, user) {
+    async removeFromWishList(product1, user1) {
 
-        const userIndex = db.data.users.findIndex(user => user.id === user.id);
+        const userIndex = db.data.users.findIndex(user => user.id === user1.id);
 
-        const productIndex = db.data.users[userIndex].wishList.findIndex(product => product.id === product.id);
+        const productIndex = db.data.users[userIndex].wishList.findIndex(product => product.id === product1.id);
 
         const delName = db.data.users[userIndex].wishList[productIndex].name
 

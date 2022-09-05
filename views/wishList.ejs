@@ -24,7 +24,7 @@
                 <% userWishList.forEach(function(product) { %>
 
                     <div class="row pt-0 align-items-center">
-                        <span class="col ps-0 caseSensitiveFont"><a href=<%= `/list-products/see-product/${product.id}` %>><%= product.name %></a></span>
+                        <span class="col ps-0 caseSensitiveFont"><a href=<%= `/list-products/see-product/?id=${product.id}` %>><%= product.name %></a></span>
                         <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
                         <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
                         <div class="col-2">
