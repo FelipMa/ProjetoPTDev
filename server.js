@@ -24,7 +24,22 @@ app.listen(port, () => console.log(`App listening on port ${port}!`));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('layout', 'main');
-app.use(express.static(__dirname + '/public/'));
+
+homeRoutes.stack.forEach(function(r){
+  app.use(r.route.path, express.static(__dirname + '/public'))
+})
+productRoutes.stack.forEach(function(r){
+  app.use(r.route.path, express.static(__dirname + '/public'))
+})
+userRoutes.stack.forEach(function(r){
+  app.use(r.route.path, express.static(__dirname + '/public'))
+})
+wishListRoutes.stack.forEach(function(r){
+  app.use(r.route.path, express.static(__dirname + '/public'))
+})
+couponRoutes.stack.forEach(function(r){
+  app.use(r.route.path, express.static(__dirname + '/public'))
+})
 
 app.dynamicHelpers({
     req: function(req, res){
