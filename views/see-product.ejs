@@ -1,16 +1,117 @@
-<div>
+<div class="idPage">
 
-    <h1><%= `Ver produto ${product.name}` %></h1>
-    <h3>Estado atual:</h3>
-    <h4>Nome: <%= product.name %></h4>
-    <h4>Preço: <%= product.price %></h4>
-    <h4>Estoque: <%= product.stock %> <% if (product.stock <= 10) { %> (Baixo Estoque) <% }; %></h4>
+    <div class="row m-auto ps-0 border-bottom border-dark align-items-center">
+        <h2 class="col ps-4 mb-0 pe-0">Detalhes do Produto</h2>
+    </div>
 
-    <h1>Comprar Produto</h1>
-    <form method="POST" action=<%= `/list-products/buy-product/${product.id}` %>>
-        <input type="text" name="quantity" placeholder="Enter Quantity">
-        <input type="text" name="code" placeholder="Enter Coupon Code">
-        <button type="submit">Buy</button>
-    </form>
+    <div class="row m-auto pe-0">
+
+        <section class="col-xl-6 me-0 p-0 border border-dark">
+
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner d-flex justify-content-around">
+                    <div class="carousel-item active">
+                        <img src="img/placeholder1.png" class="d-block w-50 img-fluid" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/placeholder3.png" class="d-block w-50 img-fluid" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </section>
+
+        <section class="col ps-3 pb-4">
+
+            <div class="row align-items-center">
+                <h3 class="col mt-2"><%= `${product.name}` %></h3>
+            </div>
+
+            <div class="row mb-0 p-0 pb-0 pt-4">
+                <h5 class="col caseSensitiveFont lead">R$ <%= product.price %>,00</h5>
+            </div>
+
+            <div class="row mb-0 p-0 pb-0 pt-4">
+                <% if (product.stock == 1) { %>
+                    <h5 class="col caseSensitiveFont lead"><%= product.stock %> disponível</h5>
+                <% } else {%>
+                    <h5 class="col caseSensitiveFont lead"><%= product.stock %> disponíveis</h5>
+                <% }; %>
+            </div>
+
+            <% if (product.stock <= 10) { %>
+            <div class="row mb-0 p-0 pb-0">
+                <h5 class="col text-danger lead">Baixo Estoque!</h5>
+            </div>
+            <% }; %>
+
+            <!-- Botão que ativa modal de compra individual -->
+            <button type="button" class="m-1 ms-0 btn btn-success" data-bs-toggle="modal" data-bs-target=<%= `#singleProductBuyModal${product.id}` %>>
+                Comprar Agora
+            </button>
+
+            <!-- Modal de compra individual -->
+            <div class="modal fade" id=<%= `singleProductBuyModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Cabeçalho do Modal -->
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><%= `Comprar ${product.name}` %></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <!-- Corpo do Modal -->
+                        <div class="modal-body">
+                            <!-- Forms de compra individual do produto -->
+                            <form class="col mt-3" method="POST" id=<%= `singleBuyProduct${product.id}` %> action=<%= `/list-products/buy-product/${product.id}` %>>
+                                <!-- Info do Produto -->
+                                <div class="row mb-3 mx-2 d-flex justify-content-around align-items-center">
+                                    <span class="col ps-0 caseSensitiveFont lead"><%= product.name %></span>
+                                    <span class="col ps-0 caseSensitiveFont lead">R$ <%= product.price %>,00</span>
+                                    <% if (product.stock == 1) { %>
+                                        <span class="col ps-0 caseSensitiveFont lead"><%= product.stock %> disponível</span>
+                                    <% } else {%>
+                                        <span class="col ps-0 caseSensitiveFont lead"><%= product.stock %> disponíveis</span>
+                                    <% }; %>
+                                </div>
+                                <!-- Linhas da entrada da quantidade e do cupom -->
+                                <div class="row">
+                                    <div class="col input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-instaBuyProduct-qtd">Quantidade</span>
+                                        <input required type="number" name="quantity" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-qtd">
+                                    </div>
+                                    <div class="col input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-instaBuyProduct-code">Cupom</span>
+                                        <input type="text" name="code" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-instaBuyProduct-code">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Rodapé do Modal -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" form=<%= `singleBuyProduct${product.id}` %> class="btn btn-success">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
 
 </div>

@@ -34,9 +34,6 @@ footer {
     border: 1px solid red;
 }
 
-#testandooo {
-    width: 100%;
-}
 
 /* Navbar */
 
@@ -70,7 +67,7 @@ footer {
     padding-right: 20px;
 }
 
-.encaixe-de-imagem {
+.logo-navbar {
     object-fit: contain;
     height: 3em;
 }
