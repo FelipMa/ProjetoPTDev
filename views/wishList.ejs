@@ -1,51 +1,60 @@
-<div>
+<div class="idPage">
     <% if (req.session.user) { %>
 
-        <h3>Sua lista de desejos:</h3>
+        <div class="row m-auto ps-0 border-bottom border-dark align-items-center">
+            <h2 class="col ps-4 mb-0 pe-0">Lista de Desejos</h2>
+        </div>
 
         <% if (userWishList.length === 0) { %>
 
-            <p>Não há produtos aqui por enquanto</p>
+            <h4 class="ps-4 my-4 caseSensitiveFont">Você não adicionou produtos em sua lista de desejos!</h4>
+            <button type="button" class="ms-4 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
 
         <% } else { %>
 
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <% userWishList.forEach(function(product) { %>
-                    <tr>
-                        <td><%= product.name %></td>
-                        <td><%= product.price %></td>
-                        <td><%= product.stock %></td>
-                        <td><% if (product.stock <= 10) { %> (Baixo Estoque) <% }; %></td>
-                        <td>
-                            <a href=<%= `/list-products/see-product/${product.id}` %>>Ver produto</a>
-                        </td>
-                        <td>
-                            <a href=<%= `/cart/add-to-cart/${product.id}` %>>Adicionar ao carrinho</a>
-                        </td>
-                        <td>
-                            <a href=<%= `/wish-list/remove-from-wish-list/${product.id}` %>>Remover da lista de desejos</a>
-                        </td>
-                    </tr>
-                    <% }); %>
-                </tbody>
+            <div class="row m-auto ps-4 mt-4 pe-0">
                 
-            </table>
+                <div class="row mb-0 pb-0">
+                    <h5 class="col ps-0">Nome</h5>
+                    <h5 class="col ps-0">Preço</h5>
+                    <h5 class="col ps-0">Estoque</h5>
+                    <div class="col-2 ms-2"></div>
+                </div>
+
+                <% userWishList.forEach(function(product) { %>
+
+                    <div class="row pt-0 align-items-center">
+                        <span class="col ps-0 caseSensitiveFont"><a href=<%= `/list-products/see-product/${product.id}` %>><%= product.name %></a></span>
+                        <span class="col ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
+                        <span class="col ps-0 caseSensitiveFont"><%= product.stock %></span>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-outline-info m-1" onclick="location.href='<%= `/cart/add-to-cart/${product.id}` %>'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                    <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger m-1" onclick="location.href='<%= `/wish-list/remove-from-wish-list/${product.id}` %>'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-x" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
+                                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                <% }); %>
+
+            </div>
 
             <% } %>
 
     <% } else { %>
 
-        <h1>Necessário iniciar sessão</h1>
+        <h1 class="ps-4 border-bottom border-dark">Lista de Desejos</h1>
+        <h4 class="ps-4 my-4 caseSensitiveFont">Faça login em sua conta para acessar sua lista de desejos.</h4>
+        <span class="ps-4 caseSensitiveFont">Não tem conta?</span>
+        <button type="button" class="mx-2 my-4 btn btn-outline-primary" onclick="location.href='<%= `/create-user` %>'">Criar Conta</button>
         
     <% } %>
 </div>

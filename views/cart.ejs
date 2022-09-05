@@ -9,10 +9,10 @@
 
         <% } else { let totalPrice = 0 %>
             <!-- Cabeçalho -->
-            <div class="row ps-4 border-bottom border-dark align-items-center">
-                <h2 class="col mb-0 pe-0">Carrinho</h2>
+            <div class="row ps-4 m-auto border-bottom border-dark align-items-center">
+                <h2 class="col mb-0 ps-0 pe-0">Carrinho</h2>
             </div>
-            <div class="row me-0 pe-0">
+            <div class="row m-auto pe-0">
 
                 <!-- Seção dos itens do carrinho -->
                 <section class="col-md-8 me-0 pb-4 pe-0 ps-4 border-bottom border-dark">
@@ -26,16 +26,16 @@
                         <div class="row mb-0 pb-0 pt-4 px-4">
                             <h5 class="col-sm-4 col-4 ps-0">Nome</h5>
                             <h5 class="col-sm-3 col-2 ps-0">Preço</h5>
-                            <h5 class="col-sm-3 col-2 ps-0">Estoque</h5>
+                            <h5 class="col-sm-3 col-2 ps-0 d-flex justify-content-center">Estoque</h5>
                             <div class="col-sm-2 col-4"></div>
                         </div>
 
                         <!-- Linhas de produtos -->
                         <% req.session.cart.forEach(function(product) { totalPrice += product.price %>
                         <div class="row p-4 py-0 align-items-center border-top">
-                            <span class="col-sm-4 col-4 ps-0 caseSensitiveFont"><%= product.name %></span>
+                            <span class="col-sm-4 col-4 ps-0 caseSensitiveFont"><a href=<%= `/list-products/see-product/${product.id}` %>><%= product.name %></a></span>
                             <span class="col-sm-3 col-2 ps-0 caseSensitiveFont">R$ <%= product.price %>,00</span>
-                            <span class="col-sm-3 col-2 ps-0 caseSensitiveFont"><%= product.stock %></span>
+                            <span class="col-sm-3 col-2 ps-0 caseSensitiveFont d-flex justify-content-center"><%= product.stock %></span>
                             
                             <!-- Grupo de botões de interação com o produto individual -->
                             <div class="col-sm-2 col-4 p-0 d-flex justify-content-between">
@@ -112,7 +112,7 @@
                 </section> 
 
                 <!-- Seção de Compra do Carrinho -->
-                <section class="col ps-3 pb-4 border-bottom border-start border-dark">
+                <section class="col ps-3 pb-4 border-bottom border-dark">
 
                     <div class="row align-items-center">
                         <h3 class="col mt-2">Total</h2>
