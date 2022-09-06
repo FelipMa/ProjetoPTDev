@@ -4,13 +4,13 @@
             "id": 1,
             "name": "Tênis Air Jordan",
             "price": 859,
-            "stock": 4
+            "stock": 10
         },
         {
             "id": 2,
             "name": "Camiseta Básica",
             "price": 129,
-            "stock": 5
+            "stock": 9
         },
         {
             "id": 3,
@@ -22,13 +22,13 @@
             "id": 4,
             "name": "Meia Longa (6u)",
             "price": 49,
-            "stock": 24
+            "stock": 31
         },
         {
             "id": 5,
             "name": "Boné",
             "price": 69,
-            "stock": 1
+            "stock": 0
         },
         {
             "id": 6,
@@ -43,26 +43,7 @@
             "email": "teste@123",
             "password": "123",
             "adm": "on",
-            "wishList": [
-                {
-                    "id": 1,
-                    "name": "Tênis Air Jordan",
-                    "price": 859,
-                    "stock": 4
-                },
-                {
-                    "id": 5,
-                    "name": "Boné",
-                    "price": 69,
-                    "stock": 1
-                },
-                {
-                    "id": 3,
-                    "name": "Calça Jeans Skinny",
-                    "price": 159,
-                    "stock": 7
-                }
-            ]
+            "wishList": []
         },
         {
             "id": 4,
