@@ -6,13 +6,16 @@
 
     <div class="row m-auto pe-0">
 
+        <!-- Seção de carrossel de imagens -->
         <section class="col-xl-6 me-0 p-0 border border-dark">
 
             <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="true">
+                <!-- Indicadores da imagem atual -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 </div>
+                <!-- Imagens do Carrossel -->
                 <div class="carousel-inner d-flex justify-content-around">
                     <div class="carousel-item active">
                         <img src="img/placeholder1.png" class="d-block w-50 img-fluid" alt="...">
@@ -21,10 +24,12 @@
                         <img src="img/placeholder3.png" class="d-block w-50 img-fluid" alt="...">
                     </div>
                 </div>
+                <!-- Botão de voltar imagem -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
+                <!-- Botão de adiantar imagem -->
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
@@ -33,16 +38,20 @@
 
         </section>
 
+        <!-- Seção de info do produto -->
         <section class="col ps-3 pb-4">
 
+            <!-- Nome -->
             <div class="row align-items-center">
                 <h3 class="col mt-2"><%= `${product.name}` %></h3>
             </div>
 
+            <!-- Preço -->
             <div class="row mb-0 p-0 pb-0 pt-4">
                 <h5 class="col caseSensitiveFont lead">R$ <%= product.price %>,00</h5>
             </div>
 
+            <!-- Estoque -->
             <div class="row mb-0 p-0 pb-0 pt-4">
                 <% if (product.stock == 1) { %>
                     <h5 class="col caseSensitiveFont lead"><%= product.stock %> disponível</h5>
@@ -51,18 +60,19 @@
                 <% }; %>
             </div>
 
+            <!-- Baixo Estoque aviso -->
             <% if (product.stock <= 10) { %>
             <div class="row mb-0 p-0 pb-0">
                 <h5 class="col text-danger lead">Baixo Estoque!</h5>
             </div>
             <% }; %>
 
-            <!-- Botão que ativa modal de compra individual -->
+            <!-- Botão que ativa modal de compra-->
             <button type="button" class="m-1 ms-0 btn btn-success" data-bs-toggle="modal" data-bs-target=<%= `#singleProductBuyModal${product.id}` %>>
                 Comprar Agora
             </button>
 
-            <!-- Modal de compra individual -->
+            <!-- Modal de compra-->
             <div class="modal fade" id=<%= `singleProductBuyModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

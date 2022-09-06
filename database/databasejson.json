@@ -4,7 +4,7 @@
             "id": 1,
             "name": "Tênis Air Jordan",
             "price": 859,
-            "stock": 10
+            "stock": 6
         },
         {
             "id": 2,
@@ -42,7 +42,7 @@
             "id": 5,
             "email": "teste@123",
             "password": "123",
-            "adm": "on",
+            "adm": false,
             "wishList": []
         },
         {
