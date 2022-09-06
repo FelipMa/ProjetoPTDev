@@ -10,4 +10,8 @@ router.get('/about', function (req, res) {
     controller.getAbout(req, res)
 })
 
+router.get("/clearMsg", function (req, res) {
+    controller.clearMsg(req, res)
+})
+
 module.exports = router
