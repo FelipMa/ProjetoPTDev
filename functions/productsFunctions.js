@@ -25,13 +25,13 @@ class ProductsFunctions {
         let message = ""
 
         if (name === undefined || name === "") {
-            throw new Error ("name is necessary")
+            throw new Error ("Nome é necessário.")
         }
 
         const exists = await this.findProductByName(name);
     
         if (exists) {
-            message = "A product with this name already exists"
+            message = "Já existe um produto com esse nome."
             console.log(`${message}`);
         }
         else{
@@ -42,7 +42,7 @@ class ProductsFunctions {
         db.data.products.push(product);
     
         await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-        message = `Successfully created product ${name}`
+        message = `Produto ${name} criado com sucesso.`
         console.log(`${message}`)
 
         return message;
@@ -56,7 +56,7 @@ class ProductsFunctions {
         const exists = await this.findProductById(productId);
     
         if (!exists) {
-            message = "A product with this id does not exist"
+            message = "Um produto com esse id não existe."
             console.log(`${message}`);
         }
         else{
@@ -66,7 +66,7 @@ class ProductsFunctions {
             db.data.products.splice(productIndex, 1);
     
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-            message = `Successfully deleted product ${delName}`
+            message = `Produto ${delName} apagado com sucesso.`
             console.log(`${message}`)
         }
         return message;
@@ -77,7 +77,7 @@ class ProductsFunctions {
         let message = ""
 
         if (name === undefined || name === "") {
-            throw new Error ("name is necessary")
+            throw new Error ("Nome é necessário.")
         }
 
         const exists = await this.findProductById(productId);
@@ -90,12 +90,12 @@ class ProductsFunctions {
         }
 
         if (!exists) {
-            message = "A product with this id does not exist"
+            message = "Um produto com esse ID não existe."
             console.log(`${message}`);
         }
         else{
             if (name != exists.name && name === otherName.name) {
-                message = "A product with this name already exists"
+                message = "Já existe um produto com esse nome."
                 console.log(`${message}`);
             } 
             else {
@@ -109,7 +109,7 @@ class ProductsFunctions {
                 db.data.products[index] = exists;
         
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                message = `Successfully updated product ${previewName} to product ${name}`
+                message = `Produto ${previewName} atualizado para ${name}`
                 console.log(`${message}`)
             }
         }
@@ -123,7 +123,7 @@ class ProductsFunctions {
         const exists = await this.findProductById(productId);
     
         if (!exists) {
-            message = "A product with this id does not exist"
+            message = "Um produto com esse ID não existe."
             console.log(`${message}`);
         }
         else{
@@ -137,11 +137,11 @@ class ProductsFunctions {
                 db.data.products[index] = exists;
 
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                message = `Successfully bought ${quantity} units of product ${name} for ${exists.price - discount} reais each, new stock: ${exists.stock}`
+                message = `Foram compradas ${quantity} unidades do produto ${name} por R$ ${exists.price - discount},00 cada. Novo estoque: ${exists.stock}.`
                 console.log(`${message}`)
             }
             else {
-                message = "Quantity to buy is higher than stock"
+                message = "A quantidade a comprar é maior do que o estoque disponível!"
                 console.log(`${message}`)
             }
         }
@@ -168,11 +168,11 @@ class ProductsFunctions {
 
         if (exist === false) {
             req.session.cart.push(product)
-            message = `Succesfully add product ${product.name} to cart`
+            message = `Produto ${product.name} adicionado ao carrinho.`
             console.log(`${message}`)
         }
         else {
-            message = "This product is already in cart"
+            message = "Esse produto já está no carrinho."
             console.log(`${message}`)
         }
         return message;
@@ -207,7 +207,7 @@ class ProductsFunctions {
         const delName = req.session.cart[productIndex].name
 
         req.session.cart.splice(productIndex, 1);
-        message = `Successfully removed ${delName} from cart`
+        message = `O produto ${delName} foi removido do carrinho.`
         console.log(`${message}`)
         return message;
     }
@@ -229,11 +229,11 @@ class ProductsFunctions {
     
                 await this.buyProduct(id, 1)
             }
-            message = "Seccessfully bought all cart"
+            message = "Um de cada produto no carrinho foi comprado."
             console.log(`${message}`)
         }
         else {
-            message = "Not enought stock of one or more products"
+            message = "Não há estoque disponível de um ou mais produtos!"
             console.log(`${message}`)
         }
         return message;

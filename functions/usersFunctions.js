@@ -19,11 +19,11 @@ class UsersFunctions {
     async createUser(email, password, confirmPassword, adm = false) {
 
         if (email === undefined || password === "") {
-            throw new Error ("email is necessary")
+            throw new Error ("Email é necessário.")
         }
 
         if (password === undefined || password === "") {
-            throw new Error ("password is necessary")
+            throw new Error ("Senha é necessária.")
         }
 
         let message = ""
@@ -31,7 +31,7 @@ class UsersFunctions {
         const exists = await this.findUserByEmail(email);
     
         if (exists) {
-            message = "A user with this email already exists"
+            message = "Um usuário com esse e-mail já existe."
             console.log(`${message}`);
         }
         else{
@@ -41,11 +41,11 @@ class UsersFunctions {
                 db.data.users.push(user);
             
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                message = `Successfully created user ${email}`
+                message = `Usuário ${email} criado com sucesso!`
                 console.log(`${message}`)
             }
             else{
-                message = "Password is not confirmed"
+                message = "Senha não confirmada."
                 console.log(`${message}`)
             }
         }
@@ -59,7 +59,7 @@ class UsersFunctions {
         const exists = await this.findUserById(userId);
     
         if (!exists) {
-            message = "A user with this id does not exist"
+            message = "Um usuário com esse ID não existe."
             console.log(`${message}`);
         }
         else{
@@ -69,7 +69,7 @@ class UsersFunctions {
             db.data.users.splice(userIndex, 1);
     
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-            message = `Successfully deleted user ${delEmail}`
+            message = `Usuário ${delEmail} apagado com sucesso.`
             console.log(`${message}`)
         }
         return message;
@@ -78,11 +78,11 @@ class UsersFunctions {
     async updateUser(userId, email, password, adm = false) {
         
         if (email === undefined) {
-            throw new Error ("email is necessary")
+            throw new Error ("Email é necessário.")
         }
 
         if (password === undefined) {
-            throw new Error ("password is necessary")
+            throw new Error ("Senha é necessária.")
         }
 
         let message = ""
@@ -97,12 +97,12 @@ class UsersFunctions {
         }
     
         if (!exists) {
-            message = "A user with this id does not exist"
+            message = "Um usuário com esse ID não existe."
             console.log(`${message}`);
         }
         else{
             if (email != exists.email && email === otherEmail.email) {
-                message = "A user with this email already exists"
+                message = "Um usuário com esse email já existe."
                 console.log(`${message}`);
             }
             else{
@@ -116,7 +116,7 @@ class UsersFunctions {
                 db.data.users[index] = exists;
             
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                message = `Successfully updated user ${previewEmail} to user ${email}`
+                message = `Usuário ${previewEmail} atualizado para ${email} com sucesso!`
                 console.log(`${message}`)
             }
         }
@@ -130,7 +130,7 @@ class UsersFunctions {
         const existUser = await this.findUserByEmail(email)
 
         if (!existUser) {
-            message = "This email is not registered"
+            message = "Esse email não é cadastrado."
             console.log(`${message}`)
         }
         else {
@@ -140,11 +140,11 @@ class UsersFunctions {
                     id: existUser.id,
                     adm: existUser.adm
                 }
-                message = `User ${email} successfully logged in`
+                message = `Usuário ${email} logado com sucesso!`
                 console.log(`${message}`)
             }
             else{
-                message = "Password is incorrect"
+                message = "Senha incorreta."
                 console.log(`${message}`)
             }
         }
@@ -157,7 +157,7 @@ class UsersFunctions {
         const email = user.email
 
         req.session.user = null
-        let message = `User ${email} successfully logged out`
+        let message = `Usuário ${email} deslogado com sucesso.`
         console.log(`${message}`)
         return message;
     }

@@ -72,27 +72,15 @@ footer {
     height: 3em;
 }
 
-/* Landing Page */
+/* Home */
 
-#landingPage > main > h1 {
-    position: absolute;
+.mainTitle {
     color: #f2a900;
     text-shadow: 2px 2px 5px black;
-    top: 40%;
-    transform: translate(0, -50%);
     font-family: "Bebas Neue";
 }
 
-#landingPage > main > h6 {
+.absolutePosition {
     position: absolute;
-    color:aliceblue;
-    background: rgba(120, 104, 104, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    top: 40%;
-    transform: translate(0, 50%);
-    max-width: 75%;
-    font-family: "Montserrat";
+    height: calc(100% - 50px - 5rem);
 }
-
-/* registroPage */

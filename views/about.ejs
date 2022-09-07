@@ -1,1 +1,25 @@
-<h1>About</h1>
+<div>
+    <main class="p-4 cover-container mx-auto">
+
+        <h1 class="mainTitle row border-bottom border-dark"><p class="ps-4 p-0 m-0">Sobre a TITAN</p></h1>
+
+        <div class="row lead caseSensitiveFont my-4">
+            <div class="col-md-6 col-10 p-0 m-0 ps-4">
+                A TITAN é uma Empresa Júnior de Engenharia da Computação, na UFBA. Este site em que você se encontra é um projeto
+                do programa Trainee pela Equipe 1, contabilizado como o trabalho final para a entrada na diretoria de DEV.
+            </div>
+        </div>
+
+        <div class="row caseSensitiveFont">
+            <div class="col-md-6 col-10 p-0 m-0 ps-4">
+                Nosso site possui diversas funcionalidades, acesse nossa loja ou crie uma conta para começar!
+            </div>
+        </div>
+
+        <div>
+            <button type="button" class="m-2 btn btn-outline-primary" onclick="location.href='<%= `/create-user` %>'">Criar Conta</button>
+            <button type="button" class="m-2 btn btn-outline-primary" onclick="location.href='<%= `/list-products` %>'">Acesse nossa Loja</button>
+        </div>
+
+    </main>
+</div>

@@ -13,17 +13,17 @@
                     <!-- Email de criação de conta -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="inputGroup-register-email">E-mail</span>
-                        <input type="email" name="email" placeholder="email@exemplo.com" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-email" >
+                        <input type="email" required name="email" placeholder="email@exemplo.com" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-email" >
                     </div>
                     <!-- Senha de criação de conta -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="inputGroup-register-password">Senha</span>
-                        <input type="password" name="password" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-password" >
+                        <input type="password" required name="password" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-password" >
                     </div>
                     <!-- Confirmar senha de criação de conta -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="inputGroup-register-passwordConfirm">Confirme a Senha</span>
-                        <input type="password" name="confirmPassword" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-passwordConfirm" >
+                        <input type="password" required name="confirmPassword" class="form-control caseSensitiveFont" aria-label="Username" aria-describedby="inputGroup-register-passwordConfirm" >
                     </div>
                     <!-- Se o usuário que está fazendo a conta for adm -->
                     <% if (userAdm === "on") { %>

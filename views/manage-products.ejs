@@ -14,38 +14,38 @@
                 <!-- Botão ativador de modal de criação de produto -->
                 <button type="button" class="btn btn-outline-primary col-lg-2 col-sm-4 col-6 m-1" data-bs-toggle="modal" data-bs-target="#createProductModal">+ Cadastrar Novo</button>
                 <!-- Modal de Criação de Produtos -->
-                    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/manage-products/create-product" id="cadastroProdutos"></form>
+                                <!-- Nome do Produto -->
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-createProduct-name">Nome</span>
+                                    <input required type="text" form="cadastroProdutos" name="name" placeholder="Ex.: Tênis Air Jordan" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-name">                                       
                                 </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="/manage-products/create-product" id="cadastroProdutos"></form>
-                                    <!-- Nome do Produto -->
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-createProduct-name">Nome</span>
-                                        <input required type="text" form="cadastroProdutos" name="name" placeholder="Ex.: Tênis Air Jordan" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-name">                                       
-                                    </div>
-                                    <!-- Preço do Produto -->
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-createProduct-price">Preço (R$)</span>
-                                        <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" form="cadastroProdutos" name="price" placeholder="Ex.: 439" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-price">
-                                    </div>
-                                    <!-- Estoque do Produto -->
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-createProduct-stock">Estoque Atual</span>
-                                        <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" form="cadastroProdutos" name="stock" placeholder="Ex.: 8" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-stock">
-                                    </div>
-                                  </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" form="cadastroProdutos" class="btn btn-primary">Cadastrar Produto</button>
+                                <!-- Preço do Produto -->
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-createProduct-price">Preço (R$)</span>
+                                    <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" form="cadastroProdutos" name="price" placeholder="Ex.: 439" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-price">
                                 </div>
+                                <!-- Estoque do Produto -->
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-createProduct-stock">Estoque Atual</span>
+                                    <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" form="cadastroProdutos" name="stock" placeholder="Ex.: 8" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-createProduct-stock">
+                                </div>
+                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" form="cadastroProdutos" class="btn btn-primary">Cadastrar Produto</button>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
 
             <% if (products.length) { %>
@@ -69,49 +69,49 @@
                     </button>
                     <!-- Modal de Edição de Produtos -->
                     <div class="modal fade" id=<%= `editProductModal${product.id}` %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"><%= `Editar produto '${product.name}'` %></h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="POST" id=<%= `editProducts${product.id}` %> action=<%= `/manage-products/edit-product/${product.id}/update` %>>
-                                            <!-- Informações do produto não editado -->
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="inputGroup-originalProduct">Produto Atual</span>
-                                                <input type="text" form="NaoExiste" readonly name="code" value="<%= product.name %>" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
-                                                <input type="text" form="NaoExiste" readonly name="code" value="R$ <%= product.price %>,00" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
-                                                <% if (product.stock == 1) { %>
-                                                    <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> item" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
-                                                <% } else {%>
-                                                    <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> itens" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
-                                                <% }; %>
-                                            </div>
-                                            <!-- Input group para o novo nome -->
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="inputGroup-editProduct-name">Novo Nome</span>
-                                                <input required type="text" name="name" placeholder="Ex.: Tênis Air Jordan" value="<%= product.name %>"
-                                                class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-name">
-                                            </div>
-                                            <!-- Input group para o novo preço -->
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="inputGroup-editProduct-price">Novo Valor</span>
-                                                <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="price" placeholder="Ex.: 439" value=<%= `${product.price}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-price">
-                                            </div>
-                                            <!-- Input group para o novo estoque -->
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="inputGroup-editProduct-stock">Novo Estoque</span>
-                                                <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="stock" placeholder="Ex.: 8" value=<%= `${product.stock}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-stock">
-                                            </div>
-                                        </form>                                    
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" form=<%= `editProducts${product.id}` %> class="btn btn-primary">Atualizar Produto</button>
-                                    </div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><%= `Editar produto '${product.name}'` %></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" id=<%= `editProducts${product.id}` %> action=<%= `/manage-products/edit-product/${product.id}/update` %>>
+                                        <!-- Informações do produto não editado -->
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-originalProduct">Produto Atual</span>
+                                            <input type="text" form="NaoExiste" readonly name="code" value="<%= product.name %>" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                            <input type="text" form="NaoExiste" readonly name="code" value="R$ <%= product.price %>,00" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                            <% if (product.stock == 1) { %>
+                                                <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> item" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                            <% } else {%>
+                                                <input type="text" form="NaoExiste" readonly name="code" value="<%= product.stock %> itens" class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-originalProduct">
+                                            <% }; %>
+                                        </div>
+                                        <!-- Input group para o novo nome -->
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-editProduct-name">Novo Nome</span>
+                                            <input required type="text" name="name" placeholder="Ex.: Tênis Air Jordan" value="<%= product.name %>"
+                                            class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-name">
+                                        </div>
+                                        <!-- Input group para o novo preço -->
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-editProduct-price">Novo Valor</span>
+                                            <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="price" placeholder="Ex.: 439" value=<%= `${product.price}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-price">
+                                        </div>
+                                        <!-- Input group para o novo estoque -->
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-editProduct-stock">Novo Estoque</span>
+                                            <input required pattern="[0-9]+" title="Insira um valor numérico válido!" type="text" name="stock" placeholder="Ex.: 8" value=<%= `${product.stock}` %> class="form-control caseSensitiveFont" aria-label="Sizing example input" aria-describedby="inputGroup-editProduct-stock">
+                                        </div>
+                                    </form>                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" form=<%= `editProducts${product.id}` %> class="btn btn-primary">Atualizar Produto</button>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <!-- Botão que deleta produto -->
                     <button type="button" onclick="location.href='<%= `/manage-products/edit-product/${product.id}/delete` %>'" class="col-1 btn btn-danger ms-1 p-1 d-flex justify-content-center align-items-center">

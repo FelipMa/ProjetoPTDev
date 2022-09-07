@@ -27,12 +27,12 @@ class WishListFunctions {
         
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
 
-            message = `Succesfully add product ${product.name} to your wish list`
+            message = `Produto ${product.name} foi adicionado a sua lista de desejos.`
             console.log(`${message}`)
         }
 
         else {
-            message = "This product is already in your wish list"
+            message = "Esse produto já está na sua lista de desejos!"
             console.log(`${message}`)
         }
         return message;
@@ -50,7 +50,7 @@ class WishListFunctions {
 
         await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
 
-        let message = `Successfully removed product ${delName} from your wish list`
+        let message = `Produto ${delName} foi removido de sua lista de desejos.`
         console.log(`${message}`)
         return message;
     }

@@ -25,13 +25,13 @@ class CouponFunctions {
         let message = ""
 
         if (code === undefined || code === "") {
-            throw new Error ("coupon code is necessary")
+            throw new Error ("É necessário um código do cupom.")
         }
 
         const exists = await this.findCouponByCode(code);
     
         if (exists) {
-            message = "A coupon with this code already exists"
+            message = "Já existe um cupom com esse código."
             console.log(`${message}`);
         }
         else{
@@ -41,7 +41,7 @@ class CouponFunctions {
         db.data.coupons.push(coupon);
     
         await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-        message = `Successfully created coupon ${code}`
+        message = `Cupom ${code} criado com sucesso.`
         console.log(`${message}`)
 
         return message;
@@ -55,7 +55,7 @@ class CouponFunctions {
         const exists = await this.findCouponById(couponId);
     
         if (!exists) {
-            message = "A coupon with this id does not exist"
+            message = "Não existe cupom com esse ID."
             console.log(`${message}`);
         }
         else{
@@ -65,7 +65,7 @@ class CouponFunctions {
             db.data.coupons.splice(couponIndex, 1);
     
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-            message = `Successfully deleted coupon ${delCode}`
+            message = `Cupom ${delCode} apagado com sucesso.`
             console.log(`${message}`)
         }
         return message;
@@ -76,7 +76,7 @@ class CouponFunctions {
         let message = ""
 
         if (code === undefined || code === "") {
-            throw new Error ("code is necessary")
+            throw new Error ("É necessário um código.")
         }
 
         const exists = await this.findCouponById(couponId);
@@ -89,12 +89,12 @@ class CouponFunctions {
         }
 
         if (!exists) {
-            message = "A coupon with this id does not exist"
+            message = "Não existe um cupom com esse ID."
             console.log(`${message}`);
         }
         else{
             if (code != exists.code && code === otherCode.code) {
-                message = "A coupon with this code already exists"
+                message = "Já existe um cupom com esse ID."
                 console.log(`${message}`);
             } 
             else {
@@ -107,7 +107,7 @@ class CouponFunctions {
                 db.data.coupons[index] = exists;
         
                 await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                message = `Successfully updated coupon ${previewCode} to coupon ${code}`
+                message = `Cupom ${previewCode} atualizado para cupom ${code}.`
                 console.log(`${message}`)
             }
         }

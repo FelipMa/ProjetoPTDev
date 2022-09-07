@@ -10,25 +10,25 @@
             "id": 2,
             "name": "Camiseta Básica",
             "price": 129,
-            "stock": 9
+            "stock": 3
         },
         {
             "id": 3,
             "name": "Calça Jeans Skinny",
             "price": 159,
-            "stock": 7
+            "stock": 4
         },
         {
             "id": 4,
             "name": "Meia Longa (6u)",
             "price": 49,
-            "stock": 31
+            "stock": 25
         },
         {
             "id": 5,
             "name": "Boné",
             "price": 69,
-            "stock": 0
+            "stock": 3
         },
         {
             "id": 6,
@@ -39,18 +39,32 @@
     ],
     "users": [
         {
-            "id": 5,
-            "email": "teste@123",
-            "password": "123",
-            "adm": false,
-            "wishList": []
+            "id": 4,
+            "email": "testando@aqui",
+            "password": "aaa",
+            "adm": "on",
+            "wishList": [
+                {
+                    "id": 2,
+                    "name": "Camiseta Básica",
+                    "price": 129,
+                    "stock": 3
+                }
+            ]
         },
         {
             "id": 4,
             "email": "testando@aqui",
             "password": "aaa",
-            "adm": false,
-            "wishList": []
+            "adm": "on",
+            "wishList": [
+                {
+                    "id": 2,
+                    "name": "Camiseta Básica",
+                    "price": 129,
+                    "stock": 3
+                }
+            ]
         },
         {
             "id": 5,
@@ -77,6 +91,13 @@
                     "stock": 1
                 }
             ]
+        },
+        {
+            "id": 6,
+            "email": "",
+            "password": "d",
+            "adm": false,
+            "wishList": []
         }
     ],
     "coupons": [
