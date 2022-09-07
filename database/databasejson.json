@@ -49,6 +49,12 @@
                     "name": "Camiseta Básica",
                     "price": 129,
                     "stock": 3
+                },
+                {
+                    "id": 1,
+                    "name": "Tênis Air Jordan",
+                    "price": 859,
+                    "stock": 6
                 }
             ]
         },
