@@ -133,18 +133,21 @@ class ProductsFunctions {
             quantity = parseInt(quantity)
 
             if (exists.stock - quantity >= 0) {
-                exists.stock -= quantity
-                db.data.products[index] = exists;
-
-                await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
-                message = `Foram compradas ${quantity} unidades do produto ${name} por R$ ${exists.price - discount},00 cada. Novo estoque: ${exists.stock}.`
-                console.log(`${message}`)
+                if (discount < exists.price * quantity) {
+                    exists.stock -= quantity
+                    db.data.products[index] = exists;
+                    await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
+                    message = `Foram compradas ${quantity} unidades do produto ${name} por R$ ${exists.price - discount},00 cada. Novo estoque: ${exists.stock}.`
+                }
+                else{
+                    message = `O disconto é maior que o preço da compra`
+                }
             }
             else {
                 message = "A quantidade a comprar é maior do que o estoque disponível!"
-                console.log(`${message}`)
             }
         }
+        console.log(`${message}`)
         return message;
     }
 
