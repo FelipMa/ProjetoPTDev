@@ -16,13 +16,13 @@
             "id": 3,
             "name": "Calça Jeans Skinny",
             "price": 159,
-            "stock": 9
+            "stock": 8
         },
         {
             "id": 4,
             "name": "Meia Longa (6u)",
             "price": 49,
-            "stock": 23
+            "stock": 21
         },
         {
             "id": 5,
@@ -39,79 +39,21 @@
     ],
     "users": [
         {
-            "id": 4,
-            "email": "testando@aqui",
-            "password": "aaa",
-            "adm": "on",
-            "wishList": [
-                {
-                    "id": 2,
-                    "name": "Camiseta Básica",
-                    "price": 129,
-                    "stock": 3
-                },
-                {
-                    "id": 1,
-                    "name": "Tênis Air Jordan",
-                    "price": 859,
-                    "stock": 6
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "email": "testando@aqui",
-            "password": "aaa",
-            "adm": "on",
-            "wishList": [
-                {
-                    "id": 2,
-                    "name": "Camiseta Básica",
-                    "price": 129,
-                    "stock": 3
-                }
-            ]
-        },
-        {
-            "id": 5,
+            "id": 1,
             "email": "teste@123",
             "password": "123",
             "adm": "on",
-            "wishList": [
-                {
-                    "id": 1,
-                    "name": "Tênis Air Jordan",
-                    "price": 859,
-                    "stock": 4
-                },
-                {
-                    "id": 2,
-                    "name": "Camiseta Básica",
-                    "price": 129,
-                    "stock": 8
-                },
-                {
-                    "id": 5,
-                    "name": "Boné",
-                    "price": 69,
-                    "stock": 1
-                }
-            ]
+            "wishList": []
         },
         {
-            "id": 6,
-            "email": "",
-            "password": "d",
+            "id": 2,
+            "email": "teste@1234",
+            "password": "1234",
             "adm": false,
             "wishList": []
         }
     ],
     "coupons": [
-        {
-            "id": 1,
-            "code": "promocaoverao",
-            "discount": 15
-        },
         {
             "id": 2,
             "code": "especial100",
