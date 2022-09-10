@@ -4,7 +4,7 @@
             "id": 1,
             "name": "Tênis Air Jordan",
             "price": 859,
-            "stock": 11
+            "stock": 9
         },
         {
             "id": 2,
@@ -22,19 +22,19 @@
             "id": 4,
             "name": "Meia Longa (6u)",
             "price": 49,
-            "stock": 21
+            "stock": 30
         },
         {
             "id": 5,
             "name": "Boné",
             "price": 69,
-            "stock": 2
+            "stock": 1
         },
         {
             "id": 6,
             "name": "Óculos Rayban",
             "price": 799,
-            "stock": 1
+            "stock": 0
         }
     ],
     "users": [

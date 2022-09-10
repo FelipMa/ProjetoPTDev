@@ -3,7 +3,7 @@ const router = express.Router()
 const controller = require("../controllers/wishListControllers");
 
 router.get("/wish-list/add-to-wish-list/:productId", function(req, res){
-    controller.addToWishLsit(req, res)
+    controller.addToWishList(req, res)
 })
 router.get("/wish-list/remove-from-wish-list/:productId", function(req, res){
     controller.removeFromWishList(req, res)

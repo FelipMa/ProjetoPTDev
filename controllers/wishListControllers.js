@@ -19,7 +19,7 @@ class WishListController {
         }
     }
 
-    async addToWishLsit (req, res) {
+    async addToWishList (req, res) {
 
         if (req.session.user) {
             const productId = await req.params.productId

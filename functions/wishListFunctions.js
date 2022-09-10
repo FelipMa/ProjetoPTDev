@@ -4,13 +4,13 @@ const fs = require("fs");
 
 class WishListFunctions {
 
-    async addToWishList(product, user) {
+    async addToWishList(product, User) {
 
         let message = ""
         let exist = false
 
-        for (let i = 0; i < user.wishList.length; i++) {
-            let id = user.wishList[i].id
+        for (let i = 0; i < User.wishList.length; i++) {
+            let id = User.wishList[i].id
         
             if (id === product.id) {
                 exist = true
@@ -18,13 +18,16 @@ class WishListFunctions {
         }
 
         if (exist === false) {
+            console.log(User.id)
 
-            user.wishList.push(product)
+            User.wishList.push(product)
+
+            const index = await db.data.users.findIndex(user => user.id === User.id);
+
+            console.log(index)
         
-            const index = db.data.users.findIndex(user => user.id === user.id);
-        
-            db.data.users[index] = user;
-        
+            db.data.users[index] = User;
+
             await fs.promises.writeFile("database/databasejson.json", JSON.stringify(db.data, null, 4));
 
             message = `Produto ${product.name} foi adicionado a sua lista de desejos.`
@@ -38,11 +41,11 @@ class WishListFunctions {
         return message;
     }
 
-    async removeFromWishList(product1, user1) {
+    async removeFromWishList(Product, User) {
 
-        const userIndex = db.data.users.findIndex(user => user.id === user1.id);
+        const userIndex = db.data.users.findIndex(user => user.id === User.id);
 
-        const productIndex = db.data.users[userIndex].wishList.findIndex(product => product.id === product1.id);
+        const productIndex = db.data.users[userIndex].wishList.findIndex(product => product.id === Product.id);
 
         const delName = db.data.users[userIndex].wishList[productIndex].name
 
